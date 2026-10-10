@@ -1,0 +1,1723 @@
+/* Cartoon & Hand-Drawn Cookie Shop Design */
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Permanent+Marker&family=Comic+Neue:wght@400;700&display=swap");
+
+/* Hand-drawn style peso sign */
+.price::first-letter,
+.cart-item-price::first-letter,
+.cart-item-total::first-letter,
+.current-price::first-letter,
+.old-price::first-letter,
+.price-tag::first-letter,
+.order-total::first-letter,
+.summary-item-price::first-letter,
+span:has(.free-shipping) ~ span::first-letter,
+.price-row span:last-child::first-letter,
+.total-row span:last-child::first-letter {
+  font-family: "Permanent Marker", cursive !important;
+  font-weight: bold;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ion-content {
+  --background: #fff9f0;
+}
+
+/* Sketch Banner */
+.sketch-banner {
+  --background: #3d2817;
+  --min-height: 45px;
+  overflow: hidden;
+}
+
+.doodle-banner {
+  display: flex;
+  align-items: center;
+  background: #3d2817;
+  color: #fff9f0;
+  padding: 12px 0;
+  font-family: "Patrick Hand", cursive;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 3px dashed #8b4513;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner-track {
+  display: flex;
+  gap: 80px;
+  animation: scroll-banner 40s linear infinite;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.banner-track span {
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+@keyframes scroll-banner {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+/* Cartoon Header */
+.cartoon-header {
+  --background: #fff;
+  --min-height: 90px;
+  border-bottom: 4px solid #3d2817;
+  box-shadow: 0 4px 0 #8b4513;
+}
+
+.header-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cookie-doodle {
+  font-size: 48px;
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sketch-logo {
+  font-family: "Permanent Marker", cursive;
+  font-size: 38px;
+  color: #3d2817;
+  text-shadow: 3px 3px 0 #d2691e;
+  margin: 0;
+  transform: rotate(-2deg);
+}
+
+.sketch-nav {
+  display: flex;
+  gap: 35px;
+}
+
+.nav-sketch {
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3d2817;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.nav-sketch:hover {
+  border: 2px solid #3d2817;
+  background: #fff9f0;
+  transform: translateY(-3px) rotate(1deg);
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.sketch-icon-btn {
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.sketch-icon-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  background: #d2691e;
+  color: #fff;
+}
+
+.cart-sketch .cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff6347;
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  border: 2px solid #3d2817;
+  font-family: "Comic Neue", cursive;
+}
+
+.sketch-cta {
+  background: #d2691e;
+  color: #fff;
+  border: 3px solid #3d2817;
+  padding: 12px 28px;
+  border-radius: 25px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #3d2817;
+  transition: all 0.2s;
+}
+
+.sketch-cta:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #3d2817;
+}
+
+/* Hero Section - Hand Drawn */
+.hero-sketch {
+  background: linear-gradient(135deg, #ffd7a8 0%, #ffb38a 100%);
+  padding: 80px 60px;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 5px dashed #3d2817;
+}
+
+.sketch-bg-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 49px,
+      rgba(61, 40, 23, 0.05) 49px,
+      rgba(61, 40, 23, 0.05) 50px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 49px,
+      rgba(61, 40, 23, 0.05) 49px,
+      rgba(61, 40, 23, 0.05) 50px
+    );
+  pointer-events: none;
+}
+
+.hero-content-sketch {
+  flex: 1;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: #3d2817;
+  color: #fff9f0;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-family: "Patrick Hand", cursive;
+  font-size: 14px;
+  margin-bottom: 25px;
+  transform: rotate(-3deg);
+  border: 2px solid #8b4513;
+}
+
+.hero-title-sketch {
+  font-family: "Permanent Marker", cursive;
+  font-size: 68px;
+  color: #3d2817;
+  line-height: 1.1;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.word-1 {
+  transform: rotate(-1deg);
+  text-shadow: 4px 4px 0 rgba(139, 69, 19, 0.3);
+}
+
+.word-2 {
+  transform: rotate(1deg);
+  text-shadow: -4px 4px 0 rgba(139, 69, 19, 0.3);
+  margin-left: 30px;
+}
+
+.word-3 {
+  transform: rotate(-1.5deg);
+  text-shadow: 4px 4px 0 rgba(139, 69, 19, 0.3);
+  margin-left: 15px;
+}
+
+.hero-subtitle-sketch {
+  font-family: "Comic Neue", cursive;
+  font-size: 18px;
+  color: #3d2817;
+  line-height: 1.7;
+  margin-bottom: 35px;
+  font-weight: 400;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.primary-sketch-btn {
+  background: #3d2817;
+  color: #fff9f0;
+  border: 3px solid #3d2817;
+  padding: 16px 35px;
+  border-radius: 30px;
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 5px 5px 0 #8b4513;
+  transition: all 0.2s;
+}
+
+.primary-sketch-btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 #8b4513;
+}
+
+.secondary-sketch-btn {
+  background: #fff;
+  color: #3d2817;
+  border: 3px solid #3d2817;
+  padding: 16px 35px;
+  border-radius: 30px;
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 5px 5px 0 #d2691e;
+  transition: all 0.2s;
+}
+
+.secondary-sketch-btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 #d2691e;
+  background: #fff9f0;
+}
+
+.hero-illustration {
+  flex: 1;
+  position: relative;
+  height: 400px;
+}
+
+.floating-cookie {
+  position: absolute;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  object-fit: contain;
+  opacity: 1 !important;
+  animation: floatCookie 4s ease-in-out infinite;
+}
+
+@keyframes floatCookie {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floatCookieMobile {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(18deg) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(18deg) translateY(-20px);
+  }
+}
+
+.cookie-float-1 {
+  bottom: 60%;
+  left: 100%;
+  width: 240px !important;
+  height: 240px !important;
+  transform: rotate(-15deg);
+  animation-delay: 0s;
+}
+
+.cookie-float-2 {
+  bottom: 8%;
+  left: 25%;
+  width: 320px !important;
+  height: 320px !important;
+  transform: rotate(12deg);
+  animation-delay: 0.5s;
+}
+
+.cookie-float-3 {
+  bottom: 2%;
+  left: 50%;
+  width: 280px !important;
+  height: 280px !important;
+  transform: rotate(8deg);
+  animation-delay: 1s;
+}
+
+.cookie-float-4 {
+  bottom: 10%;
+  left: 72%;
+  width: 210px !important;
+  height: 210px !important;
+  transform: rotate(-8deg);
+  animation-delay: 1.5s;
+}
+
+.cookie-float-5 {
+  bottom: 5%;
+  left: 88%;
+  width: 260px !important;
+  height: 260px !important;
+  transform: rotate(18deg);
+  animation-delay: 2s;
+}
+
+@media (min-width: 1024px) {
+  .cookie-float-1 {
+    width: 300px !important;
+    height: 300px !important;
+  }
+
+  .cookie-float-2 {
+    width: 400px !important;
+    height: 400px !important;
+  }
+
+  .cookie-float-3 {
+    width: 350px !important;
+    height: 350px !important;
+  }
+
+  .cookie-float-4 {
+    width: 270px !important;
+    height: 270px !important;
+  }
+
+  .cookie-float-5 {
+    width: 340px !important;
+    height: 340px !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  .cookie-float-1 {
+    width: 340px !important;
+    height: 340px !important;
+  }
+
+  .cookie-float-2 {
+    width: 450px !important;
+    height: 450px !important;
+  }
+
+  .cookie-float-3 {
+    width: 400px !important;
+    height: 400px !important;
+  }
+
+  .cookie-float-4 {
+    width: 310px !important;
+    height: 310px !important;
+  }
+
+  .cookie-float-5 {
+    width: 380px !important;
+    height: 380px !important;
+  }
+}
+
+.doodle-stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.star-doodle {
+  position: absolute;
+  font-size: 32px;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.s1 {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.s2 {
+  top: 20%;
+  right: 10%;
+  animation-delay: 0.5s;
+}
+
+.s3 {
+  bottom: 20%;
+  left: 15%;
+  animation-delay: 1s;
+}
+
+.s4 {
+  bottom: 10%;
+  right: 20%;
+  animation-delay: 1.5s;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+/* Featured Cookies Cards */
+.featured-cookies {
+  padding: 90px 60px;
+  background: #fff9f0;
+}
+
+.section-header-sketch {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sketch-heading {
+  font-family: "Permanent Marker", cursive;
+  font-size: 48px;
+  color: #3d2817;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.underline-sketch {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-sketch::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: #d2691e;
+  transform: rotate(-1deg);
+}
+
+.emoji-bounce {
+  font-size: 48px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.sketch-subheading {
+  font-family: "Patrick Hand", cursive;
+  font-size: 20px;
+  color: #8b4513;
+  transform: rotate(-1deg);
+}
+
+.cookie-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cookie-card {
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 8px 8px 0 rgba(61, 40, 23, 0.2);
+}
+
+.cookie-card:hover {
+  transform: translate(-4px, -4px) rotate(-1deg);
+  box-shadow: 12px 12px 0 rgba(61, 40, 23, 0.3);
+}
+
+.wishlist-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #d2691e;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s;
+  box-shadow: 3px 3px 0 rgba(61, 40, 23, 0.2);
+}
+
+.wishlist-btn:hover {
+  background: #d2691e;
+  color: #fff;
+  transform: scale(1.1) rotate(-10deg);
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.3);
+}
+
+.wishlist-btn:active {
+  transform: scale(0.95);
+}
+
+.product-badge-sketch {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: #ff6347;
+  color: #fff;
+  padding: 8px 18px;
+  border: 3px solid #3d2817;
+  border-radius: 25px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 14px;
+  transform: rotate(-5deg);
+  box-shadow: 3px 3px 0 rgba(61, 40, 23, 0.3);
+  z-index: 5;
+}
+
+.card-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #3d2817;
+}
+
+.card-corner.tl {
+  top: -3px;
+  left: -3px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.card-corner.tr {
+  top: -3px;
+  right: -3px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.card-corner.bl {
+  bottom: -3px;
+  left: -3px;
+  border-right: none;
+  border-top: none;
+}
+
+.card-corner.br {
+  bottom: -3px;
+  right: -3px;
+  border-left: none;
+  border-top: none;
+}
+
+.card-sketch-border {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 2px dashed #d2691e;
+  border-radius: 15px;
+  pointer-events: none;
+}
+
+.cookie-illustration {
+  width: 260px;
+  height: 260px;
+  margin: 0 auto 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cookie-illustration.choc-chip {
+  background: radial-gradient(circle, #d2a679 0%, #c69563 100%);
+}
+
+.cookie-illustration.choc-chip::before,
+.cookie-illustration.choc-chip::after {
+  content: "";
+  position: absolute;
+  background: #654321;
+  border-radius: 50%;
+  border: 2px solid #3d2817;
+}
+
+.cookie-illustration.choc-chip::before {
+  width: 28px;
+  height: 28px;
+  top: 30%;
+  left: 25%;
+}
+
+.cookie-illustration.choc-chip::after {
+  width: 24px;
+  height: 24px;
+  bottom: 30%;
+  right: 25%;
+}
+
+.cookie-illustration.pb-cookie {
+  background: radial-gradient(circle, #daa520 0%, #cd9a1f 100%);
+}
+
+.cookie-illustration.pb-cookie::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: #b8860b;
+  border-radius: 50%;
+  border: 2px solid #3d2817;
+}
+
+.cookie-illustration.oat-cookie {
+  background: radial-gradient(circle, #c19a6b 0%, #a68a64 100%);
+}
+
+.cookie-illustration.oat-cookie::before,
+.cookie-illustration.oat-cookie::after {
+  content: "";
+  position: absolute;
+  background: #8b4513;
+  border-radius: 50%;
+  border: 2px solid #3d2817;
+}
+
+.cookie-illustration.oat-cookie::before {
+  width: 20px;
+  height: 20px;
+  top: 35%;
+  left: 30%;
+}
+
+.cookie-illustration.oat-cookie::after {
+  width: 18px;
+  height: 18px;
+  bottom: 35%;
+  right: 30%;
+}
+
+.cookie-illustration.double-choc {
+  background: radial-gradient(circle, #654321 0%, #4a3219 100%);
+}
+
+.cookie-illustration.double-choc::before,
+.cookie-illustration.double-choc::after {
+  content: "";
+  position: absolute;
+  background: #3d2817;
+  border-radius: 50%;
+  border: 2px solid #3d2817;
+}
+
+.cookie-illustration.double-choc::before {
+  width: 30px;
+  height: 30px;
+  top: 25%;
+  left: 20%;
+}
+
+.cookie-illustration.double-choc::after {
+  width: 26px;
+  height: 26px;
+  bottom: 28%;
+  right: 22%;
+}
+
+.card-content h3 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 26px;
+  color: #3d2817;
+  margin-bottom: 8px;
+  text-align: center;
+  transform: rotate(-1deg);
+}
+
+.card-content p {
+  font-family: "Patrick Hand", cursive;
+  font-size: 16px;
+  color: #8b4513;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-family: "Permanent Marker", cursive;
+  font-size: 28px;
+  color: #d2691e;
+}
+
+.add-btn {
+  background: #d2691e;
+  color: #fff;
+  border: 3px solid #3d2817;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-family: "Comic Neue", cursive;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #3d2817;
+  transition: all 0.2s;
+}
+
+.add-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #3d2817;
+}
+
+.card-doodles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.doodle {
+  position: absolute;
+  font-size: 24px;
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+.doodle.d1 {
+  top: 10px;
+  right: 10px;
+}
+
+.doodle.d2 {
+  bottom: 10px;
+  left: 10px;
+}
+
+/* Info Banner */
+.info-banner-sketch {
+  padding: 60px;
+  background: linear-gradient(135deg, #8b6f47 0%, #6b5638 100%);
+  border-top: 5px dashed #3d2817;
+  border-bottom: 5px dashed #3d2817;
+}
+
+.banner-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 30px;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  box-shadow: 10px 10px 0 rgba(61, 40, 23, 0.3);
+}
+
+.banner-doodle {
+  width: 120px;
+  height: 120px;
+}
+
+.mixing-bowl {
+  width: 100%;
+  height: 100%;
+  background: #d2691e;
+  border-radius: 50% 50% 45% 45%;
+  border: 4px solid #3d2817;
+  position: relative;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.3);
+}
+
+.mixing-bowl::before {
+  content: "🥄";
+  position: absolute;
+  font-size: 48px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+}
+
+.banner-text {
+  flex: 1;
+}
+
+.banner-text h3 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 32px;
+  color: #3d2817;
+  margin-bottom: 15px;
+}
+
+.banner-text p {
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #3d2817;
+}
+
+.chef-hat {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 50% 50% 0 0;
+  position: relative;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.3);
+}
+
+.chef-hat::before {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 10%;
+  right: 10%;
+  height: 15px;
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-top: none;
+}
+
+/* Cookie Journey */
+.cookie-journey {
+  padding: 90px 60px;
+  background: #fff9f0;
+}
+
+.journey-steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.step-card {
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 25px;
+  padding: 30px;
+  width: 200px;
+  text-align: center;
+  position: relative;
+  box-shadow: 6px 6px 0 rgba(61, 40, 23, 0.2);
+  transition: all 0.3s;
+}
+
+.step-card:hover {
+  transform: translateY(-10px) rotate(2deg);
+  box-shadow: 10px 10px 0 rgba(61, 40, 23, 0.3);
+}
+
+.step-number {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 50px;
+  height: 50px;
+  background: #d2691e;
+  border: 4px solid #3d2817;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Permanent Marker", cursive;
+  font-size: 28px;
+  color: #fff;
+}
+
+.step-illustration {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px;
+}
+
+.ingredient-bowl {
+  width: 100%;
+  height: 100%;
+  background: #8b4513;
+  border-radius: 50%;
+  border: 4px solid #3d2817;
+  position: relative;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.2);
+}
+
+.ingredient-bowl::before {
+  content: "🌾";
+  position: absolute;
+  font-size: 48px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mixing-icon {
+  width: 100%;
+  height: 100%;
+  background: #daa520;
+  border-radius: 50%;
+  border: 4px solid #3d2817;
+  position: relative;
+  animation: rotate 4s linear infinite;
+}
+
+.mixing-icon::before {
+  content: "🥄";
+  position: absolute;
+  font-size: 48px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.oven-icon {
+  width: 100%;
+  height: 100%;
+  background: #ff6347;
+  border-radius: 20px;
+  border: 4px solid #3d2817;
+  position: relative;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.2);
+}
+
+.oven-icon::before {
+  content: "🔥";
+  position: absolute;
+  font-size: 48px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.happy-cookie {
+  width: 100%;
+  height: 100%;
+  background: #d2691e;
+  border-radius: 50%;
+  border: 4px solid #3d2817;
+  position: relative;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.2);
+}
+
+.happy-cookie::before {
+  content: "😊";
+  position: absolute;
+  font-size: 48px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.step-card h4 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 20px;
+  color: #3d2817;
+  margin-bottom: 10px;
+}
+
+.step-card p {
+  font-family: "Patrick Hand", cursive;
+  font-size: 14px;
+  color: #8b4513;
+  line-height: 1.5;
+}
+
+.arrow-sketch {
+  font-size: 48px;
+  color: #d2691e;
+  font-weight: bold;
+  transform: rotate(-10deg);
+}
+
+/* Reviews */
+.reviews-sketch {
+  padding: 90px 60px;
+  background: linear-gradient(135deg, #ffd7a8 0%, #ffb38a 100%);
+  border-top: 5px dashed #3d2817;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.review-bubble {
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 25px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 6px 6px 0 rgba(61, 40, 23, 0.2);
+  transform: rotate(-1deg);
+  transition: all 0.3s;
+}
+
+.review-bubble:hover {
+  transform: rotate(0deg) translateY(-5px);
+  box-shadow: 10px 10px 0 rgba(61, 40, 23, 0.3);
+}
+
+.review-bubble.b2 {
+  transform: rotate(1deg);
+}
+
+.review-bubble.b3 {
+  transform: rotate(-1.5deg);
+}
+
+.bubble-tail {
+  position: absolute;
+  bottom: -20px;
+  left: 40px;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #fff;
+  border-top-color: #3d2817;
+}
+
+.bubble-tail::before {
+  content: "";
+  position: absolute;
+  top: -24px;
+  left: -16px;
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-top: 20px solid #fff;
+}
+
+.reviewer-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 4px solid #3d2817;
+  margin: 0 auto 15px;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.2);
+}
+
+.av-1 {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+}
+
+.av-2 {
+  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+.av-3 {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.stars ion-icon {
+  font-size: 20px;
+  color: #ffd700;
+}
+
+.stars ion-icon.filled {
+  color: #ffa500;
+}
+
+.review-bubble p {
+  font-family: "Patrick Hand", cursive;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #3d2817;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.reviewer-name {
+  font-family: "Comic Neue", cursive;
+  font-size: 14px;
+  font-weight: bold;
+  color: #8b4513;
+  text-align: center;
+  display: block;
+}
+
+/* CTA Banner */
+.cta-banner-sketch {
+  padding: 90px 60px 0px;
+  background: linear-gradient(135deg, #6b5638 0%, #8b6f47 100%);
+  border-top: 5px dashed #3d2817;
+}
+
+.cta-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  background: #fff9f0;
+  border: 5px solid #3d2817;
+  border-radius: 35px;
+  padding: 60px;
+  box-shadow: 12px 12px 0 rgba(61, 40, 23, 0.3);
+}
+
+.cta-illustration {
+  flex-shrink: 0;
+}
+
+.cta-illustration .big-cookie-cartoon {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, #d2691e 0%, #b8722e 100%);
+  border-radius: 50%;
+  border: 5px solid #3d2817;
+  position: relative;
+  box-shadow: 8px 8px 0 rgba(61, 40, 23, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.big-cookie-cartoon::before,
+.big-cookie-cartoon::after {
+  content: "";
+  position: absolute;
+  background: #654321;
+  border-radius: 50%;
+  border: 3px solid #3d2817;
+}
+
+.big-cookie-cartoon::before {
+  width: 40px;
+  height: 40px;
+  top: 25%;
+  left: 20%;
+}
+
+.big-cookie-cartoon::after {
+  width: 35px;
+  height: 35px;
+  bottom: 28%;
+  right: 22%;
+}
+
+.cta-text h2 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 42px;
+  color: #3d2817;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.cta-text p {
+  font-family: "Comic Neue", cursive;
+  font-size: 18px;
+  color: #8b4513;
+  margin-bottom: 30px;
+}
+
+.mega-cta-btn {
+  background: #d2691e;
+  color: #fff;
+  border: 4px solid #3d2817;
+  padding: 20px 45px;
+  border-radius: 35px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 22px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 8px 8px 0 #3d2817;
+  transition: all 0.2s;
+}
+
+.mega-cta-btn:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 4px 4px 0 #3d2817;
+}
+
+.btn-decoration {
+  font-size: 28px;
+  animation: spin 3s linear infinite;
+}
+
+/* Footer */
+.sketch-footer {
+  background: #3d2817;
+  color: #fff9f0;
+  padding: 60px 60px 30px;
+  border-top: 5px solid #8b4513;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+.footer-col h4 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #d2691e;
+}
+
+.footer-col p,
+.footer-col a {
+  font-family: "Patrick Hand", cursive;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #fff9f0;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  transition: all 0.3s;
+}
+
+.footer-col a:hover {
+  color: #d2691e;
+  transform: translateX(5px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 2px dashed #8b4513;
+}
+
+.footer-bottom p {
+  font-family: "Comic Neue", cursive;
+  font-size: 14px;
+  color: #fff9f0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-sketch {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-title-sketch {
+    font-size: 52px;
+  }
+
+  .cookie-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .journey-steps {
+    flex-direction: column;
+  }
+
+  .arrow-sketch {
+    transform: rotate(90deg);
+  }
+
+  .cta-banner-sketch {
+    padding: 60px 30px 0px;
+  }
+
+  .cta-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 30px;
+    gap: 35px;
+  }
+
+  .cta-illustration .big-cookie-cartoon {
+    width: 180px;
+    height: 180px;
+  }
+
+  .cta-text h2 {
+    font-size: 32px;
+  }
+
+  .cta-text p {
+    font-size: 16px;
+  }
+
+  .mega-cta-btn {
+    padding: 18px 35px;
+    font-size: 20px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-wrap {
+    padding: 0 25px;
+  }
+
+  .sketch-nav {
+    display: none;
+  }
+
+  .desktop-only-btn {
+    display: none;
+  }
+
+  .hero-title-sketch {
+    font-size: 38px;
+  }
+
+  .hero-illustration {
+    height: 500px !important;
+    width: 100% !important;
+  }
+
+  .cookie-float-1 {
+    top: 0% !important;
+    left: 0% !important;
+    width: 180px !important;
+    height: 180px !important;
+  }
+
+  .cookie-float-2 {
+    top: 0% !important;
+    right: 0% !important;
+    left: auto !important;
+    width: 190px !important;
+    height: 190px !important;
+  }
+
+  .cookie-float-3 {
+    bottom: 0% !important;
+    left: 0% !important;
+    width: 185px !important;
+    height: 185px !important;
+  }
+
+  .cookie-float-4 {
+    bottom: 0% !important;
+    right: 0% !important;
+    top: auto !important;
+    left: auto !important;
+    width: 175px !important;
+    height: 175px !important;
+  }
+
+  .cookie-float-5 {
+    top: 50% !important;
+    left: 50% !important;
+    width: 200px !important;
+    height: 200px !important;
+    animation: floatCookieMobile 4s ease-in-out infinite !important;
+    animation-delay: 2s !important;
+  }
+
+  .cookie-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .banner-card {
+    flex-direction: column;
+    padding: 35px;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .cta-banner-sketch {
+    padding: 50px 20px 0px;
+  }
+
+  .cta-content {
+    padding: 35px 25px;
+    border-radius: 25px;
+  }
+
+  .cta-illustration .big-cookie-cartoon {
+    width: 150px;
+    height: 150px;
+  }
+
+  .big-cookie-cartoon::before {
+    width: 30px;
+    height: 30px;
+  }
+
+  .big-cookie-cartoon::after {
+    width: 25px;
+    height: 25px;
+  }
+
+  .cta-text h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .cta-text p {
+    font-size: 15px;
+    margin-bottom: 25px;
+  }
+
+  .mega-cta-btn {
+    padding: 16px 30px;
+    font-size: 18px;
+    box-shadow: 6px 6px 0 #3d2817;
+  }
+
+  .mega-cta-btn:hover {
+    box-shadow: 3px 3px 0 #3d2817;
+  }
+}
+
+/* Mobile Sidebar */
+.mobile-menu-btn {
+  display: none;
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.mobile-menu-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  background: #d2691e;
+  color: #fff;
+}
+
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100vh;
+  background: #fff9f0;
+  border-left: 4px solid #3d2817;
+  box-shadow: -5px 0 15px rgba(61, 40, 23, 0.3);
+  z-index: 1000;
+  transition: right 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.mobile-sidebar.open {
+  right: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 20px;
+  border-bottom: 3px dashed #d2691e;
+  background: #fff;
+}
+
+.sidebar-logo {
+  font-family: "Permanent Marker", cursive;
+  font-size: 24px;
+  color: #3d2817;
+  margin: 0;
+}
+
+.sidebar-close-btn {
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.sidebar-close-btn:hover {
+  background: #d2691e;
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.sidebar-link {
+  font-family: "Comic Neue", cursive;
+  font-size: 20px;
+  font-weight: bold;
+  color: #3d2817;
+  text-decoration: none;
+  padding: 18px 25px;
+  border-bottom: 2px dashed rgba(61, 40, 23, 0.1);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.sidebar-link:hover {
+  background: #d2691e;
+  color: #fff;
+  padding-left: 35px;
+}
+
+.sidebar-link::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.sidebar-link:hover::before {
+  opacity: 1;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(61, 40, 23, 0.7);
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+}

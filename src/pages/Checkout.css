@@ -1,0 +1,605 @@
+/* Checkout Page - Hand-Drawn Style (Matching Home.css) */
+
+/* Background and Base Styles */
+.checkout-content-section {
+  background: #fff9f0;
+  padding: 3rem 0 5rem;
+  min-height: 100vh;
+  position: relative;
+}
+
+.checkout-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Back Button */
+.back-nav-section {
+  background: #fff9f0;
+  padding: 2rem 0 1rem;
+}
+
+.back-nav-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.back-btn-sketch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fff;
+  border: 3px solid #3d2817;
+  border-radius: 50px;
+  padding: 0.8rem 1.5rem;
+  font-family: "Permanent Marker", cursive;
+  font-size: 1rem;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.2);
+}
+
+.back-btn-sketch:hover {
+  background: #3d2817;
+  color: #fff;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(61, 40, 23, 0.3);
+}
+
+.back-btn-sketch ion-icon {
+  font-size: 1.2rem;
+}
+
+/* Title Section */
+.checkout-title-section {
+  background: #fff9f0;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.checkout-title-sketch {
+  font-family: "Permanent Marker", cursive;
+  font-size: 3rem;
+  color: #3d2817;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.underline-sketch {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-sketch::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: -10px;
+  right: -10px;
+  height: 12px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 12"><path d="M2,6 Q50,2 100,6 T198,6" stroke="%23d2691e" stroke-width="3" fill="none"/></svg>');
+  background-size: 100% 100%;
+  opacity: 0.6;
+}
+
+.checkout-subtitle {
+  font-family: "Comic Neue", cursive;
+  font-size: 1.1rem;
+  color: #8b6f47;
+  margin-top: 1rem;
+}
+
+/* Layout */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-summary-area {
+    order: -1;
+  }
+}
+
+/* Form Cards */
+.form-card-sketch {
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  box-shadow: 8px 8px 0 rgba(61, 40, 23, 0.15);
+}
+
+.form-card-sketch::before,
+.form-card-sketch::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 4px solid #3d2817;
+  border-radius: 50%;
+  background: #fff9f0;
+}
+
+.form-card-sketch::before {
+  top: -10px;
+  left: 30px;
+}
+
+.form-card-sketch::after {
+  bottom: -10px;
+  right: 30px;
+}
+
+.form-title-sketch {
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.5rem;
+  color: #3d2817;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Form Elements */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label-sketch {
+  display: block;
+  font-family: "Permanent Marker", cursive;
+  font-size: 0.9rem;
+  color: #3d2817;
+  margin-bottom: 0.5rem;
+}
+
+.required {
+  color: #d2691e;
+}
+
+.form-input-sketch {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  font-family: "Comic Neue", cursive;
+  font-size: 1rem;
+  color: #3d2817;
+  background: #fff;
+  border: 3px solid #3d2817;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+
+.form-input-sketch:focus {
+  border-color: #d2691e;
+  box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.1);
+}
+
+.form-input-sketch.error {
+  border-color: #ff4444;
+}
+
+.form-input-sketch::placeholder {
+  color: #b8956a;
+}
+
+.error-message-sketch {
+  display: block;
+  font-family: "Comic Neue", cursive;
+  font-size: 0.85rem;
+  color: #ff4444;
+  margin-top: 0.3rem;
+}
+
+/* Payment Methods */
+.payment-methods-sketch {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .payment-methods-sketch {
+    grid-template-columns: 1fr;
+  }
+}
+
+.payment-method-btn-sketch {
+  background: #fff;
+  border: 3px solid #3d2817;
+  border-radius: 15px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.1);
+}
+
+.payment-method-btn-sketch:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(61, 40, 23, 0.2);
+}
+
+.payment-method-btn-sketch.active {
+  background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 100%);
+  border-color: #d2691e;
+  box-shadow: 0 0 0 4px rgba(210, 105, 30, 0.2),
+    6px 6px 0 rgba(210, 105, 30, 0.3);
+}
+
+.payment-method-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.payment-icon {
+  font-size: 2rem;
+  color: #d2691e;
+}
+
+.payment-method-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.payment-method-name {
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.1rem;
+  color: #3d2817;
+  display: block;
+}
+
+.payment-method-desc {
+  font-family: "Comic Neue", cursive;
+  font-size: 0.85rem;
+  color: #8b6f47;
+  display: block;
+  margin-top: 0.2rem;
+}
+
+/* Payment Info Boxes */
+.payment-info-box-sketch {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border: 3px solid #1976d2;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.payment-info-box-sketch.cod {
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border-color: #d2691e;
+}
+
+.info-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.info-content h4 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.2rem;
+  color: #3d2817;
+  margin: 0 0 0.5rem 0;
+}
+
+.info-content p {
+  font-family: "Comic Neue", cursive;
+  font-size: 0.95rem;
+  color: #5d4e37;
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.features-list li {
+  font-family: "Comic Neue", cursive;
+  font-size: 0.9rem;
+  color: #3d2817;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  border: 2px solid rgba(61, 40, 23, 0.2);
+}
+
+.cod-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-item {
+  font-family: "Comic Neue", cursive;
+  font-size: 0.95rem;
+  color: #3d2817;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.check {
+  color: #d2691e;
+  font-weight: bold;
+}
+
+.amount-box {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px dashed #d2691e;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Permanent Marker", cursive;
+}
+
+.amount-box .amount {
+  font-size: 1.5rem;
+  color: #d2691e;
+}
+
+/* Order Summary Card */
+.summary-card-sketch {
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 20px;
+  padding: 2rem;
+  position: sticky;
+  top: 2rem;
+  box-shadow: 8px 8px 0 rgba(61, 40, 23, 0.15);
+  overflow: visible;
+}
+
+.summary-title-sketch {
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.5rem;
+  color: #3d2817;
+  margin: 0 0 1.5rem 0;
+}
+
+.summary-items {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: visible;
+  margin-bottom: 1.5rem;
+  padding: 5px 5px 0 5px;
+}
+
+.summary-item-sketch {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  background: #fff;
+  border: 3px solid #3d2817;
+  border-radius: 15px;
+  transition: all 0.3s;
+  box-shadow: 5px 5px 0 rgba(61, 40, 23, 0.2);
+}
+
+.summary-item-sketch:hover {
+  transform: translate(-3px, -3px) rotate(-0.5deg);
+  box-shadow: 8px 8px 0 rgba(61, 40, 23, 0.3);
+}
+
+.summary-item-image {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: transparent;
+  padding: 0;
+}
+
+.summary-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.summary-item-name {
+  font-family: "Permanent Marker", cursive;
+  font-size: 0.95rem;
+  color: #3d2817;
+}
+
+.summary-item-details {
+  font-family: "Comic Neue", cursive;
+  font-size: 0.85rem;
+  color: #8b6f47;
+}
+
+.summary-item-price {
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.1rem;
+  color: #d2691e;
+}
+
+/* Price peso sign styling */
+.summary-item-price::first-letter,
+.summary-row .price::first-letter {
+  font-family: "Permanent Marker", cursive;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+.summary-divider {
+  height: 2px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 2"><path d="M0,1 Q25,0 50,1 T100,1" stroke="%233d2817" stroke-width="2" fill="none" stroke-dasharray="3,3"/></svg>');
+  background-size: 20px 2px;
+  margin: 1.5rem 0;
+}
+
+.summary-totals {
+  margin-bottom: 1.5rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Comic Neue", cursive;
+  font-size: 1rem;
+  color: #3d2817;
+  margin-bottom: 0.8rem;
+}
+
+.summary-row.discount {
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.discount-amount {
+  color: #27ae60;
+  font-weight: 700;
+}
+
+.free-shipping {
+  color: #27ae60;
+  font-family: "Permanent Marker", cursive;
+  font-size: 0.9rem;
+}
+
+.summary-row.total {
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.3rem;
+  color: #d2691e;
+  margin-top: 1rem;
+}
+
+/* Place Order Button */
+.place-order-btn-sketch {
+  width: 100%;
+  background: linear-gradient(135deg, #d2691e 0%, #b85a1a 100%);
+  border: 3px solid #3d2817;
+  border-radius: 50px;
+  padding: 1.2rem 2rem;
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.2rem;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  transition: all 0.3s;
+  box-shadow: 5px 5px 0 rgba(61, 40, 23, 0.3);
+  margin-bottom: 1rem;
+}
+
+.place-order-btn-sketch:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 rgba(61, 40, 23, 0.4);
+}
+
+.place-order-btn-sketch:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 rgba(61, 40, 23, 0.3);
+}
+
+.place-order-btn-sketch:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.place-order-btn-sketch ion-icon {
+  font-size: 1.5rem;
+}
+
+/* Secure Badge */
+.secure-badge-sketch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: "Comic Neue", cursive;
+  font-size: 0.9rem;
+  color: #8b6f47;
+  padding: 0.8rem;
+  background: rgba(210, 105, 30, 0.1);
+  border: 2px dashed #d2691e;
+  border-radius: 10px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .checkout-container {
+    padding: 0 1rem;
+  }
+
+  .checkout-title-sketch {
+    font-size: 2.2rem;
+  }
+
+  .form-card-sketch,
+  .summary-card-sketch {
+    padding: 1.5rem;
+  }
+
+  .summary-card-sketch {
+    position: static;
+  }
+}
+
+/* Scrollbar Styling */
+.summary-items::-webkit-scrollbar {
+  width: 6px;
+}
+
+.summary-items::-webkit-scrollbar-track {
+  background: #f5ebe0;
+  border-radius: 10px;
+}
+
+.summary-items::-webkit-scrollbar-thumb {
+  background: #d2691e;
+  border-radius: 10px;
+}
+
+.summary-items::-webkit-scrollbar-thumb:hover {
+  background: #b85a1a;
+}

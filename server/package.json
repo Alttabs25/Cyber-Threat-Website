@@ -1,0 +1,20 @@
+{
+  "name": "cookie-app-stripe-server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Stripe payment server for Cookie Haven App",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "stripe": "^19.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,1069 @@
+/* Import same fonts */
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Permanent+Marker&family=Comic+Neue:wght@400;700&display=swap");
+
+/* Hand-drawn style peso sign */
+.price::first-letter,
+.cart-item-price::first-letter,
+.cart-item-total::first-letter,
+.current-price::first-letter,
+.old-price::first-letter,
+.price-tag::first-letter,
+.price-row span:last-child::first-letter,
+.total-row span:last-child::first-letter {
+  font-family: "Permanent Marker", cursive !important;
+  font-weight: bold;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ion-content {
+  --background: #fff9f0;
+}
+
+/* Reuse Header Styles */
+.sketch-banner {
+  --background: #3d2817;
+  --min-height: 45px;
+  overflow: hidden;
+}
+
+.doodle-banner {
+  display: flex;
+  align-items: center;
+  background: #3d2817;
+  color: #fff9f0;
+  padding: 12px 0;
+  font-family: "Patrick Hand", cursive;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 3px dashed #8b4513;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner-track {
+  display: flex;
+  gap: 80px;
+  animation: scroll-banner 40s linear infinite;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.banner-track span {
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+@keyframes scroll-banner {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.cartoon-header {
+  --background: #fff;
+  --min-height: 90px;
+  border-bottom: 4px solid #3d2817;
+  box-shadow: 0 4px 0 #8b4513;
+}
+
+.header-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sketch-logo {
+  font-family: "Permanent Marker", cursive;
+  font-size: 38px;
+  color: #3d2817;
+  text-shadow: 3px 3px 0 #d2691e;
+  margin: 0;
+  transform: rotate(-2deg);
+}
+
+.sketch-nav {
+  display: flex;
+  gap: 35px;
+}
+
+.nav-sketch {
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3d2817;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+
+.nav-sketch:hover {
+  border: 2px solid #3d2817;
+  background: #fff9f0;
+  transform: translateY(-3px) rotate(1deg);
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.sketch-icon-btn {
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.sketch-icon-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  background: #d2691e;
+  color: #fff;
+}
+
+.cart-sketch .cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff6347;
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  border: 2px solid #3d2817;
+  font-family: "Comic Neue", cursive;
+}
+
+.sketch-cta {
+  background: #d2691e;
+  color: #fff;
+  border: 3px solid #3d2817;
+  padding: 12px 28px;
+  border-radius: 25px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #3d2817;
+  transition: all 0.2s;
+}
+
+.sketch-cta:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #3d2817;
+}
+
+/* Mobile Sidebar */
+.mobile-menu-btn {
+  display: none;
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.mobile-menu-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  background: #d2691e;
+  color: #fff;
+}
+
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100vh;
+  background: #fff9f0;
+  border-left: 4px solid #3d2817;
+  box-shadow: -5px 0 15px rgba(61, 40, 23, 0.3);
+  z-index: 1000;
+  transition: right 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.mobile-sidebar.open {
+  right: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 20px;
+  border-bottom: 3px dashed #d2691e;
+  background: #fff;
+}
+
+.sidebar-logo {
+  font-family: "Permanent Marker", cursive;
+  font-size: 24px;
+  color: #3d2817;
+  margin: 0;
+}
+
+.sidebar-close-btn {
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.sidebar-close-btn:hover {
+  background: #d2691e;
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.sidebar-link {
+  font-family: "Comic Neue", cursive;
+  font-size: 20px;
+  font-weight: bold;
+  color: #3d2817;
+  text-decoration: none;
+  padding: 18px 25px;
+  border-bottom: 2px dashed rgba(61, 40, 23, 0.1);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.sidebar-link:hover {
+  background: #d2691e;
+  color: #fff;
+  padding-left: 35px;
+}
+
+.sidebar-link::before {
+  content: "🍪";
+  position: absolute;
+  left: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.sidebar-link:hover::before {
+  opacity: 1;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(61, 40, 23, 0.7);
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Back Navigation */
+.back-nav-section {
+  background: #fff9f0;
+  padding: 30px 60px 0;
+}
+
+.back-nav-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.back-btn-sketch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3d2817;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 3px solid #3d2817;
+  border-radius: 25px;
+  background: #fff;
+  transition: all 0.3s;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.2);
+  cursor: pointer;
+}
+
+.back-btn-sketch:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 rgba(61, 40, 23, 0.3);
+  background: #fff9f0;
+}
+
+/* Cart Title */
+.cart-title-section {
+  background: #fff9f0;
+  padding: 40px 60px 20px;
+}
+
+.cart-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cart-page-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cart-page-title {
+  font-family: "Permanent Marker", cursive;
+  font-size: 56px;
+  color: #3d2817;
+  margin-bottom: 15px;
+  text-shadow: 4px 4px 0 rgba(210, 105, 30, 0.3);
+  transform: rotate(-1deg);
+}
+
+.cart-page-subtitle {
+  font-family: "Patrick Hand", cursive;
+  font-size: 22px;
+  color: #8b4513;
+  transform: rotate(1deg);
+}
+
+.cart-title-sketch {
+  font-family: "Permanent Marker", cursive;
+  font-size: 48px;
+  color: #3d2817;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.underline-sketch {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-sketch::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: #d2691e;
+  transform: rotate(-1deg);
+}
+
+.cart-subtitle {
+  font-family: "Patrick Hand", cursive;
+  font-size: 18px;
+  color: #8b4513;
+  text-align: center;
+}
+
+/* Cart Content */
+.cart-content-section {
+  background: #fff9f0;
+  padding: 40px 60px 80px;
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Cart Items */
+.cart-items-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item-card {
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 25px;
+  padding: 30px;
+  display: flex;
+  gap: 25px;
+  align-items: stretch;
+  box-shadow: 6px 6px 0 rgba(61, 40, 23, 0.2);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.cart-item-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 9px 9px 0 rgba(61, 40, 23, 0.3);
+}
+
+.cart-item-image {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.cart-item-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.cart-item-top {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-name {
+  font-family: "Permanent Marker", cursive;
+  font-size: 24px;
+  color: #3d2817;
+  margin-bottom: 8px;
+}
+
+.cart-item-size {
+  font-family: "Patrick Hand", cursive;
+  font-size: 15px;
+  color: #8b4513;
+  margin-bottom: 12px;
+}
+
+.cart-item-price {
+  font-family: "Comic Neue", cursive;
+  font-size: 20px;
+  font-weight: bold;
+  color: #d2691e;
+  display: block;
+}
+
+.cart-item-bottom {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-top: 20px;
+  border-top: 2px dashed #d2691e;
+}
+
+.cart-quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50px;
+  padding: 10px 15px;
+  width: 200px;
+  min-width: 200px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.cart-qty-btn {
+  background: #d2691e;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cart-qty-btn:hover {
+  transform: scale(1.15);
+  background: #3d2817;
+}
+
+.cart-qty-display {
+  font-family: "Permanent Marker", cursive;
+  font-size: 28px;
+  color: #3d2817;
+  width: 60px;
+  min-width: 60px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.cart-item-total {
+  font-family: "Permanent Marker", cursive;
+  font-size: 32px;
+  color: #27ae60;
+  text-align: center;
+  flex: 1;
+}
+
+.remove-item-btn {
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #ff6347;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.remove-item-btn:hover {
+  background: #ff6347;
+  color: #fff;
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* Empty Cart State - Match Favorites Design */
+.empty-cart {
+  text-align: center;
+  padding: 100px 40px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.empty-cart-icon-sketch {
+  font-size: 120px;
+  color: #d2691e;
+  opacity: 0.5;
+  margin-bottom: 30px;
+}
+
+.empty-cart-title-sketch {
+  font-family: "Permanent Marker", cursive;
+  font-size: 42px;
+  color: #3d2817;
+  margin-bottom: 20px;
+  transform: rotate(-1deg);
+}
+
+.empty-cart-text-sketch {
+  font-family: "Comic Neue", cursive;
+  font-size: 18px;
+  color: #8b4513;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.primary-sketch-btn {
+  background: #3d2817;
+  color: #fff9f0;
+  border: 3px solid #3d2817;
+  padding: 16px 35px;
+  border-radius: 30px;
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 5px 5px 0 #8b4513;
+  transition: all 0.2s;
+}
+
+.primary-sketch-btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 #8b4513;
+}
+
+/* Old Empty Cart (keep for backwards compatibility) */
+.empty-cart-card {
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 25px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 8px 8px 0 rgba(61, 40, 23, 0.2);
+}
+
+.empty-cart-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.empty-cart-card h3 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 32px;
+  color: #3d2817;
+  margin-bottom: 15px;
+}
+
+.empty-cart-card p {
+  font-family: "Comic Neue", cursive;
+  font-size: 18px;
+  color: #8b4513;
+  margin-bottom: 30px;
+}
+
+.shop-now-btn {
+  background: #d2691e;
+  color: #fff;
+  border: 4px solid #3d2817;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 #3d2817;
+  transition: all 0.2s;
+}
+
+.shop-now-btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #3d2817;
+}
+
+/* Cart Summary */
+.cart-summary-area {
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-summary-card {
+  background: #fff;
+  border: 5px solid #3d2817;
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 8px 8px 0 rgba(61, 40, 23, 0.3);
+}
+
+.summary-title {
+  font-family: "Permanent Marker", cursive;
+  font-size: 28px;
+  color: #3d2817;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Promo Code */
+.promo-section {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 3px dashed #d2691e;
+}
+
+.promo-label {
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3d2817;
+  margin-bottom: 12px;
+}
+
+.promo-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.promo-input {
+  flex: 1;
+  font-family: "Patrick Hand", cursive;
+  font-size: 16px;
+  padding: 12px 15px;
+  border: 3px solid #3d2817;
+  border-radius: 15px;
+  background: #fff9f0;
+  color: #3d2817;
+}
+
+.promo-input:focus {
+  outline: none;
+  background: #fff;
+}
+
+.promo-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.apply-promo-btn {
+  font-family: "Comic Neue", cursive;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: 3px solid #3d2817;
+  border-radius: 15px;
+  background: #d2691e;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 3px 3px 0 #3d2817;
+}
+
+.apply-promo-btn:hover:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #3d2817;
+}
+
+.apply-promo-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.promo-success {
+  font-family: "Patrick Hand", cursive;
+  font-size: 14px;
+  color: #2ecc71;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Price Breakdown */
+.price-breakdown {
+  margin-bottom: 25px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  color: #3d2817;
+  margin-bottom: 15px;
+}
+
+.price-row.discount-row {
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+.free-shipping {
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+.shipping-note {
+  font-family: "Patrick Hand", cursive;
+  font-size: 13px;
+  color: #d2691e;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.price-row.total-row {
+  font-size: 24px;
+  font-weight: bold;
+  padding-top: 15px;
+  border-top: 3px dashed #d2691e;
+  margin-bottom: 0;
+}
+
+/* Checkout Button */
+.checkout-btn-sketch {
+  width: 100%;
+  background: #3d2817;
+  color: #fff;
+  border: 4px solid #3d2817;
+  padding: 18px;
+  border-radius: 25px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 #8b4513;
+  transition: all 0.2s;
+  margin-bottom: 20px;
+}
+
+.checkout-btn-sketch:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #8b4513;
+}
+
+/* Payment Methods */
+.payment-methods {
+  text-align: center;
+}
+
+.payment-label {
+  font-family: "Patrick Hand", cursive;
+  font-size: 14px;
+  color: #8b4513;
+  margin-bottom: 10px;
+}
+
+.payment-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.payment-icon {
+  font-size: 32px;
+}
+
+/* Trust Badges */
+.trust-badges-card {
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 20px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 6px 6px 0 rgba(61, 40, 23, 0.2);
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.badge-icon {
+  font-size: 36px;
+  flex-shrink: 0;
+}
+
+.badge-text strong {
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  color: #3d2817;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.badge-text p {
+  font-family: "Patrick Hand", cursive;
+  font-size: 13px;
+  color: #8b4513;
+  margin: 0;
+}
+
+/* Footer */
+.sketch-footer {
+  background: #3d2817;
+  color: #fff9f0;
+  padding: 60px 60px 30px;
+  border-top: 5px solid #8b4513;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto 40px;
+}
+
+.footer-col h4 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #d2691e;
+}
+
+.footer-col p,
+.footer-col a {
+  font-family: "Patrick Hand", cursive;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #fff9f0;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  transition: all 0.3s;
+}
+
+.footer-col a:hover {
+  color: #d2691e;
+  transform: translateX(5px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 2px dashed #8b4513;
+}
+
+.footer-bottom p {
+  font-family: "Comic Neue", cursive;
+  font-size: 14px;
+  color: #fff9f0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-summary-area {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-wrap {
+    padding: 0 25px;
+  }
+
+  .sketch-nav {
+    display: none;
+  }
+
+  .desktop-only-btn {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .back-nav-section,
+  .cart-title-section,
+  .cart-content-section {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .cart-title-sketch {
+    font-size: 36px;
+  }
+
+  .cart-item-card {
+    padding: 20px;
+    flex-direction: column;
+  }
+
+  .cart-item-image {
+    width: 100%;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  .cart-item-name {
+    font-size: 20px;
+  }
+
+  .cart-item-size {
+    font-size: 13px;
+  }
+
+  .cart-item-price {
+    font-size: 18px;
+  }
+
+  .cart-item-bottom {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .cart-quantity-controls {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .cart-item-total {
+    font-size: 26px;
+    flex: 1;
+    text-align: center;
+  }
+
+  .remove-item-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+  }
+
+  .cart-summary-card {
+    padding: 25px 20px;
+  }
+
+  .trust-badges-card {
+    padding: 20px;
+  }
+
+  .trust-badge {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .sketch-footer {
+    padding: 40px 25px 20px;
+  }
+}

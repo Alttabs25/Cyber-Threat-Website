@@ -1,0 +1,999 @@
+/* Favorites Page - Matching Home Design */
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Permanent+Marker&family=Comic+Neue:wght@400;700&display=swap");
+
+/* Hand-drawn style peso sign */
+.price::first-letter,
+.price-tag::first-letter {
+  font-family: "Permanent Marker", cursive !important;
+  font-weight: bold;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ion-content {
+  --background: #fff9f0;
+}
+
+/* ============================================
+   SCROLLING BANNER
+============================================ */
+
+.favorites-scrolling-banner {
+  background: linear-gradient(135deg, #d2691e 0%, #ff8c42 100%);
+  border-bottom: 4px dashed #3d2817;
+  overflow: hidden;
+  padding: 12px 0;
+  position: relative;
+}
+
+.favorites-banner-content {
+  display: flex;
+  animation: scroll-banner 40s linear infinite;
+  white-space: nowrap;
+}
+
+.favorites-banner-content span {
+  font-family: "Comic Neue", cursive;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  margin-right: 80px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes scroll-banner {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ============================================
+   CARTOON HEADER
+============================================ */
+
+.favorites-cartoon-header {
+  background: linear-gradient(180deg, #fff9f0 0%, #ffe8cc 100%);
+  border-bottom: 5px solid #3d2817;
+  padding: 25px 40px;
+  box-shadow: 0 8px 0 rgba(61, 40, 23, 0.2);
+  position: relative;
+}
+
+.favorites-header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favorites-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.favorites-cookie-icon {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, #d2a679 0%, #c69563 100%);
+  border-radius: 50%;
+  border: 4px solid #3d2817;
+  position: relative;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.3);
+}
+
+.favorites-cookie-icon::before,
+.favorites-cookie-icon::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #654321;
+  border-radius: 50%;
+  border: 2px solid #3d2817;
+}
+
+.favorites-cookie-icon::before {
+  top: 12px;
+  left: 15px;
+}
+
+.favorites-cookie-icon::after {
+  bottom: 15px;
+  right: 12px;
+}
+
+.favorites-brand-name {
+  font-family: "Permanent Marker", cursive;
+  font-size: 42px;
+  color: #3d2817;
+  margin: 0;
+  text-shadow: 3px 3px 0 rgba(210, 105, 30, 0.3);
+  transform: rotate(-2deg);
+}
+
+.favorites-nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.favorites-search-icon,
+.favorites-cart-icon {
+  background: #fff;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 3px 3px 0 rgba(61, 40, 23, 0.2);
+  position: relative;
+}
+
+.favorites-search-icon:hover,
+.favorites-cart-icon:hover {
+  transform: translateY(-3px) rotate(5deg);
+  box-shadow: 5px 5px 0 rgba(61, 40, 23, 0.3);
+}
+
+.favorites-search-icon ion-icon,
+.favorites-cart-icon ion-icon {
+  font-size: 26px;
+  color: #3d2817;
+}
+
+.favorites-cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff6347;
+  color: #fff;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Permanent Marker", cursive;
+  font-size: 14px;
+  box-shadow: 2px 2px 0 rgba(61, 40, 23, 0.3);
+}
+
+.favorites-order-btn {
+  background: linear-gradient(135deg, #d2691e 0%, #ff8c42 100%);
+  border: 4px solid #3d2817;
+  border-radius: 50px;
+  padding: 12px 30px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.3);
+  transform: rotate(-1deg);
+}
+
+.favorites-order-btn:hover {
+  transform: translateY(-3px) rotate(1deg);
+  box-shadow: 6px 6px 0 rgba(61, 40, 23, 0.4);
+}
+
+.favorites-mobile-menu-icon {
+  display: none;
+  background: #fff;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 3px 3px 0 rgba(61, 40, 23, 0.2);
+}
+
+.favorites-mobile-menu-icon ion-icon {
+  font-size: 26px;
+  color: #3d2817;
+}
+
+/* ============================================
+   MOBILE SIDEBAR
+============================================ */
+
+.favorites-mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  height: 100vh;
+  background: #fff9f0;
+  border-left: 5px solid #3d2817;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: right 0.4s ease;
+  overflow-y: auto;
+}
+
+.favorites-mobile-sidebar.open {
+  right: 0;
+}
+
+.favorites-sidebar-header {
+  background: linear-gradient(135deg, #d2691e 0%, #ff8c42 100%);
+  border-bottom: 4px solid #3d2817;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favorites-sidebar-header h2 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 28px;
+  color: #fff;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.favorites-close-icon {
+  background: #fff;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.favorites-close-icon:hover {
+  transform: rotate(90deg);
+  background: #ff6347;
+}
+
+.favorites-close-icon ion-icon {
+  font-size: 24px;
+  color: #3d2817;
+}
+
+.favorites-sidebar-links {
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.favorites-sidebar-links a {
+  font-family: "Comic Neue", cursive;
+  font-size: 20px;
+  font-weight: bold;
+  color: #3d2817;
+  text-decoration: none;
+  padding: 15px 20px;
+  background: #fff;
+  border: 3px solid #3d2817;
+  border-radius: 15px;
+  transition: all 0.3s;
+  box-shadow: 3px 3px 0 rgba(61, 40, 23, 0.2);
+}
+
+.favorites-sidebar-links a:hover {
+  transform: translateX(5px);
+  background: #d2691e;
+  color: #fff;
+  box-shadow: 5px 5px 0 rgba(61, 40, 23, 0.3);
+}
+
+.favorites-sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* ============================================
+   MAIN CONTENT
+============================================ */
+
+.favorites-main-content {
+  padding: 90px 60px;
+  background: #fff9f0;
+  min-height: 100vh;
+}
+
+/* ============================================
+   PAGE HEADER
+============================================ */
+
+.favorites-page-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.favorites-page-title {
+  font-family: "Permanent Marker", cursive;
+  font-size: 56px;
+  color: #3d2817;
+  margin-bottom: 15px;
+  text-shadow: 4px 4px 0 rgba(210, 105, 30, 0.3);
+  transform: rotate(-1deg);
+}
+
+.favorites-page-subtitle {
+  font-family: "Patrick Hand", cursive;
+  font-size: 22px;
+  color: #8b4513;
+  transform: rotate(1deg);
+}
+
+/* Cookie Cards Grid - Same as Home */
+.cookie-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cookie-card {
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 8px 8px 0 rgba(61, 40, 23, 0.2);
+}
+
+.cookie-card:hover {
+  transform: translate(-4px, -4px) rotate(-1deg);
+  box-shadow: 12px 12px 0 rgba(61, 40, 23, 0.3);
+}
+
+.wishlist-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #d2691e;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s;
+  box-shadow: 3px 3px 0 rgba(61, 40, 23, 0.2);
+}
+
+.wishlist-btn:hover {
+  background: #d2691e;
+  color: #fff;
+  transform: scale(1.1) rotate(-10deg);
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.3);
+}
+
+.product-badge-sketch {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: #ff6347;
+  color: #fff;
+  padding: 8px 18px;
+  border: 3px solid #3d2817;
+  border-radius: 25px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 14px;
+  transform: rotate(-5deg);
+  box-shadow: 3px 3px 0 rgba(61, 40, 23, 0.3);
+  z-index: 5;
+}
+
+.cookie-illustration {
+  width: 260px;
+  height: 260px;
+  margin: 0 auto 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-cookie-visual {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.cookie-visual {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 4px solid #3d2817;
+  box-shadow: 6px 6px 0 rgba(61, 40, 23, 0.2);
+  position: relative;
+}
+
+.cookie-visual.choc-chip {
+  background: radial-gradient(circle, #d2a679 0%, #c69563 100%);
+}
+
+.cookie-visual.choc-chip::before,
+.cookie-visual.choc-chip::after {
+  content: "";
+  position: absolute;
+  background: #654321;
+  border-radius: 50%;
+  border: 2px solid #3d2817;
+}
+
+.cookie-visual.choc-chip::before {
+  width: 18px;
+  height: 18px;
+  top: 20%;
+  left: 25%;
+}
+
+.cookie-visual.choc-chip::after {
+  width: 22px;
+  height: 22px;
+  bottom: 25%;
+  right: 20%;
+}
+
+.cookie-visual.pb-cookie {
+  background: radial-gradient(circle, #daa520 0%, #cd9a1f 100%);
+}
+
+.cookie-visual.double-choc {
+  background: radial-gradient(circle, #654321 0%, #4a3219 100%);
+}
+
+.cookie-visual.oatmeal {
+  background: radial-gradient(circle, #c19a6b 0%, #a0826d 100%);
+}
+
+.card-title-sketch h3 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 22px;
+  color: #3d2817;
+  text-align: center;
+  margin-bottom: 12px;
+  transform: rotate(-1deg);
+}
+
+.card-desc-sketch {
+  font-family: "Comic Neue", cursive;
+  font-size: 14px;
+  color: #8b4513;
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.card-footer-sketch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.price-tag {
+  font-family: "Permanent Marker", cursive;
+  font-size: 28px;
+  color: #d2691e;
+  text-shadow: 2px 2px 0 rgba(61, 40, 23, 0.1);
+}
+
+.add-btn-sketch {
+  background: #d2691e;
+  color: #fff;
+  border: 3px solid #3d2817;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-family: "Comic Neue", cursive;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #3d2817;
+  transition: all 0.2s;
+}
+
+.add-btn-sketch:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #3d2817;
+}
+
+.add-to-cart-sketch {
+  background: #3d2817;
+  color: #fff9f0;
+  border: 3px solid #3d2817;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-family: "Comic Neue", cursive;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 4px 4px 0 #8b4513;
+  transition: all 0.2s;
+}
+
+.add-to-cart-sketch:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #8b4513;
+}
+
+.remove-favorite-btn {
+  width: 100%;
+  background: #fff;
+  color: #ff6347;
+  border: 3px solid #3d2817;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-family: "Comic Neue", cursive;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 4px 4px 0 rgba(255, 99, 71, 0.3);
+  transition: all 0.2s;
+}
+
+.remove-favorite-btn:hover {
+  background: #ff6347;
+  color: #fff;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 rgba(255, 99, 71, 0.3);
+}
+
+/* Empty State */
+.empty-favorites {
+  text-align: center;
+  padding: 100px 40px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.empty-icon-sketch {
+  font-size: 120px;
+  color: #d2691e;
+  opacity: 0.5;
+  margin-bottom: 30px;
+}
+
+.empty-title-sketch {
+  font-family: "Permanent Marker", cursive;
+  font-size: 42px;
+  color: #3d2817;
+  margin-bottom: 20px;
+  transform: rotate(-1deg);
+}
+
+.empty-text-sketch {
+  font-family: "Comic Neue", cursive;
+  font-size: 18px;
+  color: #8b4513;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.primary-sketch-btn {
+  background: #3d2817;
+  color: #fff9f0;
+  border: 3px solid #3d2817;
+  padding: 16px 35px;
+  border-radius: 30px;
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 5px 5px 0 #8b4513;
+  transition: all 0.2s;
+}
+
+.primary-sketch-btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 #8b4513;
+}
+
+/* ============================================
+   FAVORITES GRID
+============================================ */
+
+.favorites-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+  padding: 20px;
+}
+
+.favorites-card {
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 8px 8px 0 rgba(61, 40, 23, 0.2);
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+
+.favorites-card:hover {
+  transform: translateY(-8px) rotate(1deg);
+  box-shadow: 12px 12px 0 rgba(61, 40, 23, 0.3);
+}
+
+.favorites-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.favorites-cookie-illustration {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.favorites-cookie-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #3d2817;
+  box-shadow: 6px 6px 0 rgba(61, 40, 23, 0.2);
+}
+
+.favorites-cookie-img.choc-chip {
+  background: radial-gradient(circle, #d2a679 0%, #c69563 100%);
+}
+
+.favorites-cookie-img.pb-cookie {
+  background: radial-gradient(circle, #daa520 0%, #cd9a1f 100%);
+}
+
+.favorites-cookie-img.double-choc {
+  background: radial-gradient(circle, #654321 0%, #4a3219 100%);
+}
+
+.favorites-cookie-name {
+  font-family: "Permanent Marker", cursive;
+  font-size: 28px;
+  color: #3d2817;
+  margin: 0;
+  text-align: center;
+}
+
+.favorites-cookie-price {
+  font-family: "Comic Neue", cursive;
+  font-size: 22px;
+  font-weight: bold;
+  color: #d2691e;
+  margin: 0;
+}
+
+.favorites-card-actions {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.favorites-remove-btn,
+.favorites-add-to-cart-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  border: 3px solid #3d2817;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 3px 3px 0 rgba(61, 40, 23, 0.2);
+}
+
+.favorites-remove-btn {
+  background: #fff;
+  color: #ff6347;
+}
+
+.favorites-remove-btn:hover {
+  background: #ff6347;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.3);
+}
+
+.favorites-add-to-cart-btn {
+  background: #d2691e;
+  color: #fff;
+}
+
+.favorites-add-to-cart-btn:hover {
+  background: #3d2817;
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.3);
+}
+
+.favorites-remove-btn ion-icon,
+.favorites-add-to-cart-btn ion-icon {
+  font-size: 18px;
+}
+
+.favorites-heart-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 3px 3px 0 rgba(61, 40, 23, 0.2);
+  z-index: 10;
+}
+
+.favorites-heart-icon ion-icon {
+  font-size: 24px;
+  color: #ff6347;
+}
+
+.favorites-heart-icon.filled {
+  background: #ff6347;
+}
+
+.favorites-heart-icon.filled ion-icon {
+  color: #fff;
+}
+
+.favorites-heart-icon:hover {
+  transform: scale(1.15) rotate(-10deg);
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.3);
+}
+
+/* ============================================
+   EMPTY STATE
+============================================ */
+
+.favorites-empty-state {
+  max-width: 600px;
+  margin: 100px auto;
+  text-align: center;
+  padding: 60px 40px;
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 30px;
+  box-shadow: 8px 8px 0 rgba(61, 40, 23, 0.2);
+}
+
+.favorites-empty-icon {
+  margin-bottom: 30px;
+}
+
+.favorites-empty-icon ion-icon {
+  font-size: 120px;
+  color: #d2691e;
+  opacity: 0.5;
+}
+
+.favorites-empty-title {
+  font-family: "Permanent Marker", cursive;
+  font-size: 36px;
+  color: #3d2817;
+  margin-bottom: 15px;
+}
+
+.favorites-empty-text {
+  font-family: "Comic Neue", cursive;
+  font-size: 20px;
+  color: #8b4513;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.favorites-browse-btn {
+  background: linear-gradient(135deg, #d2691e 0%, #ff8c42 100%);
+  border: 4px solid #3d2817;
+  border-radius: 50px;
+  padding: 15px 40px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 22px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.3);
+}
+
+.favorites-browse-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 6px 6px 0 rgba(61, 40, 23, 0.4);
+}
+
+/* ============================================
+   FOOTER
+============================================ */
+
+.favorites-footer {
+  background: #3d2817;
+  border-top: 5px dashed #d2691e;
+  padding: 60px 40px 30px;
+  margin-top: 80px;
+}
+
+.favorites-footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.favorites-footer-section h3 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.favorites-footer-section p {
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  color: #fff9f0;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.favorites-footer-section a {
+  display: block;
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  color: #fff9f0;
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+}
+
+.favorites-footer-section a:hover {
+  color: #d2691e;
+  transform: translateX(5px);
+}
+
+.favorites-footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 3px dashed #d2691e;
+}
+
+.favorites-footer-bottom p {
+  font-family: "Patrick Hand", cursive;
+  font-size: 16px;
+  color: #fff9f0;
+  margin: 0;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+============================================ */
+
+@media (max-width: 768px) {
+  .favorites-order-btn {
+    display: none;
+  }
+
+  .favorites-mobile-menu-icon {
+    display: flex;
+  }
+
+  .favorites-cartoon-header {
+    padding: 20px;
+  }
+
+  .favorites-brand-name {
+    font-size: 32px;
+  }
+
+  .favorites-nav-icons {
+    gap: 15px;
+  }
+
+  .favorites-main-content {
+    padding: 40px 20px;
+  }
+
+  .favorites-page-title {
+    font-size: 40px;
+  }
+
+  .favorites-page-subtitle {
+    font-size: 18px;
+  }
+
+  .favorites-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 10px;
+  }
+
+  .favorites-footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .favorites-brand-name {
+    font-size: 24px;
+  }
+
+  .favorites-cookie-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .favorites-page-title {
+    font-size: 32px;
+  }
+
+  .favorites-card {
+    padding: 20px;
+  }
+
+  .favorites-cookie-illustration {
+    width: 120px;
+    height: 120px;
+  }
+
+  .favorites-cookie-img {
+    width: 120px;
+    height: 120px;
+  }
+}

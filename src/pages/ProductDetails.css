@@ -1,0 +1,1316 @@
+/* Import same fonts from Home page */
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Permanent+Marker&family=Comic+Neue:wght@400;700&display=swap");
+
+/* Hand-drawn style peso sign */
+.price::first-letter,
+.cart-item-price::first-letter,
+.cart-item-total::first-letter,
+.current-price::first-letter,
+.old-price::first-letter,
+.price-tag::first-letter,
+.order-total::first-letter,
+.summary-item-price::first-letter {
+  font-family: "Permanent Marker", cursive !important;
+  font-weight: bold;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ion-content {
+  --background: #fff9f0;
+}
+
+/* Reuse Header Styles from Home */
+.sketch-banner {
+  --background: #3d2817;
+  --min-height: 45px;
+  overflow: hidden;
+}
+
+.doodle-banner {
+  display: flex;
+  align-items: center;
+  background: #3d2817;
+  color: #fff9f0;
+  padding: 12px 0;
+  font-family: "Patrick Hand", cursive;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 3px dashed #8b4513;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner-track {
+  display: flex;
+  gap: 80px;
+  animation: scroll-banner 40s linear infinite;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.banner-track span {
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+@keyframes scroll-banner {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.cartoon-header {
+  --background: #fff;
+  --min-height: 90px;
+  border-bottom: 4px solid #3d2817;
+  box-shadow: 0 4px 0 #8b4513;
+}
+
+.header-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sketch-logo {
+  font-family: "Permanent Marker", cursive;
+  font-size: 38px;
+  color: #3d2817;
+  text-shadow: 3px 3px 0 #d2691e;
+  margin: 0;
+  transform: rotate(-2deg);
+}
+
+.sketch-nav {
+  display: flex;
+  gap: 35px;
+}
+
+.nav-sketch {
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3d2817;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.nav-sketch:hover {
+  border: 2px solid #3d2817;
+  background: #fff9f0;
+  transform: translateY(-3px) rotate(1deg);
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.sketch-icon-btn {
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.sketch-icon-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  background: #d2691e;
+  color: #fff;
+}
+
+.cart-sketch .cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff6347;
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  border: 2px solid #3d2817;
+  font-family: "Comic Neue", cursive;
+}
+
+.sketch-cta {
+  background: #d2691e;
+  color: #fff;
+  border: 3px solid #3d2817;
+  padding: 12px 28px;
+  border-radius: 25px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #3d2817;
+  transition: all 0.2s;
+}
+
+.sketch-cta:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #3d2817;
+}
+
+/* Mobile Sidebar Styles */
+.mobile-menu-btn {
+  display: none;
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.mobile-menu-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  background: #d2691e;
+  color: #fff;
+}
+
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100vh;
+  background: #fff9f0;
+  border-left: 4px solid #3d2817;
+  box-shadow: -5px 0 15px rgba(61, 40, 23, 0.3);
+  z-index: 1000;
+  transition: right 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.mobile-sidebar.open {
+  right: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 20px;
+  border-bottom: 3px dashed #d2691e;
+  background: #fff;
+}
+
+.sidebar-logo {
+  font-family: "Permanent Marker", cursive;
+  font-size: 24px;
+  color: #3d2817;
+  margin: 0;
+}
+
+.sidebar-close-btn {
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.sidebar-close-btn:hover {
+  background: #d2691e;
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.sidebar-link {
+  font-family: "Comic Neue", cursive;
+  font-size: 20px;
+  font-weight: bold;
+  color: #3d2817;
+  text-decoration: none;
+  padding: 18px 25px;
+  border-bottom: 2px dashed rgba(61, 40, 23, 0.1);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.sidebar-link:hover {
+  background: #d2691e;
+  color: #fff;
+  padding-left: 35px;
+}
+
+.sidebar-link::before {
+  content: "🍪";
+  position: absolute;
+  left: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.sidebar-link:hover::before {
+  opacity: 1;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(61, 40, 23, 0.7);
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Back Navigation */
+.back-nav-section {
+  background: #fff9f0;
+  padding: 30px 60px 0;
+}
+
+.back-nav-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.back-btn-sketch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3d2817;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 3px solid #3d2817;
+  border-radius: 25px;
+  background: #fff;
+  transition: all 0.3s;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.2);
+}
+
+.back-btn-sketch:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 rgba(61, 40, 23, 0.3);
+  background: #fff9f0;
+}
+
+/* Product Details Section */
+.product-details-section {
+  background: #fff9f0;
+  padding: 60px 60px;
+}
+
+.product-details-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.product-image-area {
+  position: relative;
+}
+
+.wishlist-btn-large {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #fff9f0;
+  border: 4px solid #3d2817;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #d2691e;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.3);
+}
+
+.wishlist-btn-large:hover {
+  background: #d2691e;
+  color: #fff;
+  transform: scale(1.1) rotate(-10deg);
+  box-shadow: 6px 6px 0 rgba(61, 40, 23, 0.4);
+}
+
+.main-product-image {
+  background: #fff;
+  border: 5px solid #3d2817;
+  border-radius: 30px;
+  padding: 60px;
+  box-shadow: 10px 10px 0 rgba(61, 40, 23, 0.3);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-product-image::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 3px dashed #d2691e;
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.main-product-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.product-illustration-large {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 5px solid #3d2817;
+  box-shadow: 8px 8px 0 rgba(61, 40, 23, 0.2);
+  position: relative;
+}
+
+.choc-chip-large {
+  background: radial-gradient(circle, #d2a679 0%, #c69563 100%);
+}
+
+.choc-chip-large::before,
+.choc-chip-large::after {
+  content: "";
+  position: absolute;
+  background: #654321;
+  border-radius: 50%;
+  border: 3px solid #3d2817;
+}
+
+.choc-chip-large::before {
+  width: 50px;
+  height: 50px;
+  top: 25%;
+  left: 20%;
+}
+
+.choc-chip-large::after {
+  width: 45px;
+  height: 45px;
+  bottom: 25%;
+  right: 20%;
+}
+
+.product-badge-sketch {
+  position: absolute;
+  top: -15px;
+  left: 30px;
+  background: #ff6347;
+  color: #fff;
+  padding: 10px 25px;
+  border: 3px solid #3d2817;
+  border-radius: 25px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 16px;
+  transform: rotate(-5deg);
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.3);
+}
+
+.product-info-area {
+  position: sticky;
+  top: 20px;
+}
+
+.product-info-card {
+  background: #fff;
+  border: 5px solid #3d2817;
+  border-radius: 30px;
+  padding: 40px;
+  box-shadow: 10px 10px 0 rgba(61, 40, 23, 0.3);
+}
+
+.product-title-sketch {
+  font-family: "Permanent Marker", cursive;
+  font-size: 42px;
+  color: #3d2817;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  transform: rotate(-1deg);
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stars-large {
+  display: flex;
+  gap: 5px;
+}
+
+.stars-large ion-icon {
+  font-size: 24px;
+  color: #ffa500;
+}
+
+.rating-text {
+  font-family: "Patrick Hand", cursive;
+  font-size: 16px;
+  color: #8b4513;
+}
+
+.product-description-sketch {
+  font-family: "Comic Neue", cursive;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #3d2817;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #fff9f0;
+  border: 3px dashed #d2691e;
+  border-radius: 15px;
+}
+
+.price-section-sketch {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 35px;
+  padding-bottom: 25px;
+  border-bottom: 3px dashed #d2691e;
+}
+
+.current-price {
+  font-family: "Permanent Marker", cursive;
+  font-size: 48px;
+  color: #d2691e;
+}
+
+.old-price {
+  font-family: "Patrick Hand", cursive;
+  font-size: 24px;
+  color: #8b4513;
+  text-decoration: line-through;
+}
+
+.discount-badge {
+  background: #ff6347;
+  color: #fff;
+  padding: 6px 15px;
+  border: 3px solid #3d2817;
+  border-radius: 20px;
+  font-family: "Comic Neue", cursive;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.size-selector-sketch,
+.quantity-selector-sketch {
+  margin-bottom: 30px;
+}
+
+.selector-label {
+  font-family: "Permanent Marker", cursive;
+  font-size: 22px;
+  color: #3d2817;
+  margin-bottom: 15px;
+}
+
+.size-options {
+  display: flex;
+  gap: 15px;
+}
+
+.size-btn {
+  flex: 1;
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 20px;
+  padding: 15px;
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.2);
+}
+
+.size-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 6px 6px 0 rgba(61, 40, 23, 0.3);
+}
+
+.size-btn.active {
+  background: #d2691e;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.size-detail {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50px;
+  padding: 10px 20px;
+  width: fit-content;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.2);
+}
+
+.qty-btn {
+  background: #d2691e;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.qty-btn:hover {
+  transform: scale(1.1) rotate(10deg);
+  background: #3d2817;
+}
+
+.qty-display {
+  font-family: "Permanent Marker", cursive;
+  font-size: 32px;
+  color: #3d2817;
+  min-width: 50px;
+  text-align: center;
+}
+
+.action-buttons-sketch {
+  display: flex;
+  gap: 15px;
+}
+
+.add-to-cart-btn-large {
+  flex: 1;
+  background: #d2691e;
+  color: #fff;
+  border: 4px solid #3d2817;
+  padding: 18px 30px;
+  border-radius: 30px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 6px 6px 0 #3d2817;
+  transition: all 0.2s;
+}
+
+.add-to-cart-btn-large:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #3d2817;
+}
+
+.buy-now-btn-sketch {
+  flex: 1;
+  background: #3d2817;
+  color: #fff;
+  border: 4px solid #3d2817;
+  padding: 18px 30px;
+  border-radius: 30px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 #8b4513;
+  transition: all 0.2s;
+}
+
+.buy-now-btn-sketch:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #8b4513;
+}
+
+/* Section Container */
+.section-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.section-title-sketch {
+  font-family: "Permanent Marker", cursive;
+  font-size: 42px;
+  color: #3d2817;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.underline-sketch {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-sketch::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: #d2691e;
+  transform: rotate(-1deg);
+}
+
+/* Ingredients Section */
+.ingredients-section-sketch {
+  background: linear-gradient(135deg, #ffd7a8 0%, #ffb38a 100%);
+  padding: 80px 0;
+  border-top: 5px dashed #3d2817;
+  border-bottom: 5px dashed #3d2817;
+}
+
+.ingredients-card-sketch {
+  background: #fff;
+  border: 5px solid #3d2817;
+  border-radius: 30px;
+  padding: 50px;
+  box-shadow: 10px 10px 0 rgba(61, 40, 23, 0.3);
+}
+
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.ingredient-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+
+.ingredient-item:hover {
+  transform: translateY(-5px) rotate(2deg);
+  box-shadow: 5px 5px 0 rgba(61, 40, 23, 0.2);
+}
+
+.ingredient-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 3px 3px 0 rgba(61, 40, 23, 0.2);
+}
+
+.ingredient-icon::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #d2691e;
+  border-radius: 50%;
+  border: 2px solid #3d2817;
+}
+
+.ingredient-item span {
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3d2817;
+  text-align: center;
+}
+
+.allergen-info {
+  font-family: "Patrick Hand", cursive;
+  font-size: 16px;
+  color: #8b4513;
+  text-align: center;
+  padding: 20px;
+  background: #fff9f0;
+  border: 3px dashed #d2691e;
+  border-radius: 15px;
+}
+
+/* Nutrition Section */
+.nutrition-section-sketch {
+  background: #fff9f0;
+  padding: 80px 0;
+}
+
+.nutrition-card-sketch {
+  background: #fff;
+  border: 5px solid #3d2817;
+  border-radius: 30px;
+  padding: 50px;
+  box-shadow: 10px 10px 0 rgba(61, 40, 23, 0.3);
+}
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.nutrition-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 15px;
+  font-family: "Comic Neue", cursive;
+}
+
+.nutrition-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3d2817;
+}
+
+.nutrition-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #d2691e;
+}
+
+/* Reviews Detail Section */
+.reviews-detail-section {
+  background: linear-gradient(135deg, #8b6f47 0%, #6b5638 100%);
+  padding: 80px 0;
+  border-top: 5px dashed #3d2817;
+}
+
+.reviews-summary-card {
+  background: #fff;
+  border: 5px solid #3d2817;
+  border-radius: 30px;
+  padding: 50px;
+  margin-bottom: 40px;
+  box-shadow: 10px 10px 0 rgba(61, 40, 23, 0.3);
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+.overall-rating {
+  text-align: center;
+  padding-right: 40px;
+  border-right: 3px dashed #d2691e;
+}
+
+.rating-number {
+  font-family: "Permanent Marker", cursive;
+  font-size: 72px;
+  color: #d2691e;
+  line-height: 1;
+  margin-bottom: 15px;
+}
+
+.rating-stars-big {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.rating-stars-big ion-icon {
+  font-size: 32px;
+  color: #ffa500;
+}
+
+.total-reviews {
+  font-family: "Patrick Hand", cursive;
+  font-size: 16px;
+  color: #8b4513;
+}
+
+.rating-bars {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.rating-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.star-count {
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3d2817;
+  min-width: 20px;
+}
+
+.small-star {
+  font-size: 18px;
+  color: #ffa500;
+}
+
+.bar-container {
+  flex: 1;
+  height: 12px;
+  background: #fff9f0;
+  border: 2px solid #3d2817;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: #d2691e;
+  transition: width 0.3s;
+}
+
+.bar-percent {
+  font-family: "Comic Neue", cursive;
+  font-size: 14px;
+  font-weight: bold;
+  color: #8b4513;
+  min-width: 45px;
+  text-align: right;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.review-card-detail {
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 6px 6px 0 rgba(61, 40, 23, 0.2);
+  transition: all 0.3s;
+}
+
+.review-card-detail:hover {
+  transform: translateY(-5px);
+  box-shadow: 10px 10px 0 rgba(61, 40, 23, 0.3);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.reviewer-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.reviewer-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #3d2817;
+  box-shadow: 3px 3px 0 rgba(61, 40, 23, 0.2);
+}
+
+.av-1 {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+}
+
+.av-2 {
+  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+.av-3 {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.reviewer-name {
+  font-family: "Permanent Marker", cursive;
+  font-size: 20px;
+  color: #3d2817;
+  margin-bottom: 8px;
+}
+
+.review-stars {
+  display: flex;
+  gap: 5px;
+}
+
+.review-stars ion-icon {
+  font-size: 18px;
+  color: #ffa500;
+}
+
+.review-date {
+  font-family: "Patrick Hand", cursive;
+  font-size: 14px;
+  color: #8b4513;
+}
+
+.review-text {
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #3d2817;
+}
+
+.load-more-btn-sketch {
+  background: #d2691e;
+  color: #fff;
+  border: 4px solid #3d2817;
+  padding: 16px 40px;
+  border-radius: 30px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 #3d2817;
+  transition: all 0.2s;
+  display: block;
+  margin: 0 auto;
+}
+
+.load-more-btn-sketch:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 #3d2817;
+}
+
+/* Footer */
+.sketch-footer {
+  background: #3d2817;
+  color: #fff9f0;
+  padding: 60px 60px 30px;
+  border-top: 5px solid #8b4513;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto 40px;
+}
+
+.footer-col h4 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #d2691e;
+}
+
+.footer-col p,
+.footer-col a {
+  font-family: "Patrick Hand", cursive;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #fff9f0;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  transition: all 0.3s;
+}
+
+.footer-col a:hover {
+  color: #d2691e;
+  transform: translateX(5px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 2px dashed #8b4513;
+}
+
+.footer-bottom p {
+  font-family: "Comic Neue", cursive;
+  font-size: 14px;
+  color: #fff9f0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .product-details-wrap {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .product-info-area {
+    position: static;
+  }
+
+  .reviews-summary-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .overall-rating {
+    padding-right: 0;
+    padding-bottom: 30px;
+    border-right: none;
+    border-bottom: 3px dashed #d2691e;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-wrap {
+    padding: 0 25px;
+  }
+
+  .sketch-nav {
+    display: none;
+  }
+
+  .desktop-only-btn {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .back-nav-section,
+  .product-details-section,
+  .section-container {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .product-details-section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .main-product-image {
+    padding: 40px;
+  }
+
+  .product-info-card {
+    padding: 30px 25px;
+  }
+
+  .product-title-sketch {
+    font-size: 32px;
+  }
+
+  .product-description-sketch {
+    font-size: 16px;
+    padding: 15px;
+  }
+
+  .current-price {
+    font-size: 38px;
+  }
+
+  .old-price {
+    font-size: 20px;
+  }
+
+  .size-options {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .size-btn {
+    padding: 18px;
+    font-size: 18px;
+  }
+
+  .selector-label {
+    font-size: 20px;
+  }
+
+  .quantity-controls {
+    width: 100%;
+    justify-content: space-between;
+    padding: 12px 25px;
+  }
+
+  .action-buttons-sketch {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .add-to-cart-btn-large,
+  .buy-now-btn-sketch {
+    padding: 20px 30px;
+    font-size: 20px;
+  }
+
+  .ingredients-section-sketch,
+  .nutrition-section-sketch,
+  .reviews-detail-section {
+    padding: 60px 0;
+  }
+
+  .ingredients-card-sketch,
+  .nutrition-card-sketch {
+    padding: 30px 20px;
+  }
+
+  .section-title-sketch {
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+
+  .ingredients-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .ingredient-item {
+    padding: 15px 10px;
+  }
+
+  .ingredient-icon {
+    font-size: 40px;
+  }
+
+  .ingredient-item span {
+    font-size: 14px;
+  }
+
+  .nutrition-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .nutrition-item {
+    padding: 15px;
+  }
+
+  .reviews-summary-card {
+    padding: 30px 20px;
+    gap: 30px;
+  }
+
+  .rating-number {
+    font-size: 60px;
+  }
+
+  .rating-stars-big ion-icon {
+    font-size: 28px;
+  }
+
+  .review-card-detail {
+    padding: 20px;
+  }
+
+  .reviewer-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .reviewer-name {
+    font-size: 18px;
+  }
+
+  .review-text {
+    font-size: 15px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .sketch-footer {
+    padding: 40px 25px 20px;
+  }
+}

@@ -1,0 +1,343 @@
+/* Navbar Component Styles */
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Permanent+Marker&family=Comic+Neue:wght@400;700&display=swap");
+
+/* Sketch Banner */
+.sketch-banner {
+  --background: #3d2817;
+  --min-height: 45px;
+  overflow: hidden;
+}
+
+.doodle-banner {
+  display: flex;
+  align-items: center;
+  background: #3d2817;
+  color: #fff9f0;
+  padding: 12px 0;
+  font-family: "Patrick Hand", cursive;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 3px dashed #8b4513;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner-track {
+  display: flex;
+  gap: 80px;
+  animation: scroll-banner 40s linear infinite;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.banner-track span {
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+@keyframes scroll-banner {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+/* Cartoon Header */
+.cartoon-header {
+  --background: #fff;
+  --min-height: 90px;
+  border-bottom: 4px solid #3d2817;
+  box-shadow: 0 4px 0 #8b4513;
+}
+
+.header-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sketch-logo {
+  font-family: "Permanent Marker", cursive;
+  font-size: 38px;
+  color: #3d2817;
+  text-shadow: 3px 3px 0 #d2691e;
+  margin: 0;
+  transform: rotate(-2deg);
+}
+
+.sketch-nav {
+  display: flex;
+  gap: 35px;
+}
+
+.nav-sketch {
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3d2817;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.nav-sketch:hover {
+  border: 2px solid #3d2817;
+  background: #fff9f0;
+  transform: translateY(-3px) rotate(1deg);
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.sketch-icon-btn {
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.sketch-icon-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  background: #d2691e;
+  color: #fff;
+}
+
+.cart-sketch .cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff6347;
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  border: 2px solid #3d2817;
+  font-family: "Comic Neue", cursive;
+}
+
+.favorites-icon-btn .wishlist-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff6347;
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  border: 2px solid #3d2817;
+  font-family: "Comic Neue", cursive;
+}
+
+.sketch-cta {
+  background: #d2691e;
+  color: #fff;
+  border: 3px solid #3d2817;
+  padding: 12px 28px;
+  border-radius: 25px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #3d2817;
+  transition: all 0.2s;
+}
+
+.sketch-cta:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #3d2817;
+}
+
+.desktop-only-btn {
+  display: flex;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: none;
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.mobile-menu-btn:hover {
+  transform: scale(1.1) rotate(5deg);
+  background: #d2691e;
+  color: #fff;
+}
+
+/* Mobile Sidebar */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100vh;
+  background: #fff9f0;
+  border-left: 4px solid #3d2817;
+  box-shadow: -5px 0 15px rgba(61, 40, 23, 0.3);
+  z-index: 1000;
+  transition: right 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.mobile-sidebar.open {
+  right: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 20px;
+  border-bottom: 3px dashed #d2691e;
+  background: #fff;
+}
+
+.sidebar-logo {
+  font-family: "Permanent Marker", cursive;
+  font-size: 24px;
+  color: #3d2817;
+  margin: 0;
+}
+
+.sidebar-close-btn {
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #3d2817;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.sidebar-close-btn:hover {
+  background: #d2691e;
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.sidebar-link {
+  font-family: "Comic Neue", cursive;
+  font-size: 20px;
+  font-weight: bold;
+  color: #3d2817;
+  text-decoration: none;
+  padding: 18px 25px;
+  border-bottom: 2px dashed rgba(61, 40, 23, 0.1);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.sidebar-link:hover {
+  background: #d2691e;
+  color: #fff;
+  padding-left: 35px;
+}
+
+.sidebar-link::before {
+  position: absolute;
+  left: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.sidebar-link:hover::before {
+  opacity: 1;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(61, 40, 23, 0.7);
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-wrap {
+    padding: 0 25px;
+  }
+
+  .sketch-nav {
+    display: none;
+  }
+
+  .desktop-only-btn {
+    display: none;
+  }
+
+  .sketch-icon-btn.favorites-icon-btn {
+    display: none !important;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+}

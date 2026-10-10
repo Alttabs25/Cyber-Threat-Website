@@ -1,0 +1,475 @@
+/* Orders Page Styles */
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Permanent+Marker&family=Comic+Neue:wght@400;700&display=swap");
+
+/* Hand-drawn style peso sign */
+.order-total::first-letter,
+.discount-text::first-letter {
+  font-family: "Permanent Marker", cursive !important;
+  font-weight: bold;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+.orders-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.orders-title-section {
+  padding: 50px 0 40px;
+  background: #fff9f0;
+  border-bottom: 4px dashed #d2691e;
+}
+
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.orders-icon {
+  font-size: 64px;
+  color: #d2691e;
+}
+
+.orders-title-sketch {
+  font-family: "Permanent Marker", cursive;
+  font-size: 48px;
+  color: #3d2817;
+  margin: 0;
+}
+
+.orders-subtitle {
+  font-size: 18px;
+  color: #8b6f47;
+  margin: 8px 0 0 0;
+  font-weight: 600;
+}
+
+.orders-content-section {
+  padding: 60px 0;
+  background: linear-gradient(135deg, #fff9f0 0%, #ffe8d0 100%);
+  min-height: calc(100vh - 300px);
+}
+
+.empty-orders-card {
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 25px;
+  padding: 80px 40px;
+  text-align: center;
+  box-shadow: 8px 8px 0px rgba(61, 40, 23, 0.3);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.empty-orders-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.empty-orders-card h2 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 36px;
+  color: #3d2817;
+  margin: 0 0 15px 0;
+}
+
+.empty-orders-card p {
+  font-size: 18px;
+  color: #8b6f47;
+  margin: 0 0 30px 0;
+  line-height: 1.6;
+}
+
+.shop-now-btn-sketch {
+  padding: 16px 36px;
+  background: #d2691e;
+  color: #fff;
+  border: 3px solid #3d2817;
+  border-radius: 15px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 5px 5px 0px #3d2817;
+  transition: all 0.3s;
+}
+
+.shop-now-btn-sketch:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0px #3d2817;
+}
+
+.shop-now-btn-sketch:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0px 0px 0px #3d2817;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.order-card {
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 8px 8px 0px rgba(61, 40, 23, 0.3);
+  transition: all 0.3s;
+  animation: slideInUp 0.4s ease-out;
+  animation-fill-mode: both;
+}
+
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.order-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.order-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.order-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.order-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.order-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.order-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px rgba(61, 40, 23, 0.3);
+}
+
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 30px;
+  background: #fff9f0;
+  border-bottom: 3px dashed #d2691e;
+}
+
+.order-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.order-id {
+  font-family: "Permanent Marker", cursive;
+  font-size: 24px;
+  color: #3d2817;
+  margin: 0;
+}
+
+.order-date {
+  font-size: 14px;
+  color: #8b6f47;
+  margin: 0;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 700;
+  border: 2px solid;
+}
+
+.status-badge.status-delivered {
+  background: #27ae60;
+  color: #fff;
+  border-color: #1e8449;
+}
+
+.status-badge.status-pending {
+  background: #f39c12;
+  color: #fff;
+  border-color: #e67e22;
+}
+
+.status-badge.status-processing {
+  background: #3498db;
+  color: #fff;
+  border-color: #2980b9;
+}
+
+.payment-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 2px solid;
+  margin-left: 10px;
+}
+
+.payment-badge.status-paid {
+  background: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+
+.order-card-body {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  gap: 30px;
+  align-items: center;
+}
+
+.order-items-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.order-preview-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  background: #fff9f0;
+  border: 2px solid #d2691e;
+  border-radius: 12px;
+}
+
+.preview-item-image {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.preview-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.preview-item-info h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #3d2817;
+  margin: 0 0 4px 0;
+}
+
+.preview-item-info p {
+  font-size: 14px;
+  color: #8b6f47;
+  margin: 0;
+}
+
+.item-box-size {
+  font-size: 12px;
+  color: #d2691e;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.more-items {
+  padding: 12px;
+  background: #ffe8d0;
+  border: 2px dashed #d2691e;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 14px;
+  color: #8b6f47;
+  font-weight: 600;
+}
+
+.order-summary-info {
+  background: #fff9f0;
+  border: 3px solid #d2691e;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #3d2817;
+}
+
+.summary-row.discount-row {
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.discount-text {
+  color: #27ae60;
+  font-weight: 700;
+}
+
+.summary-row.total-row {
+  font-weight: 700;
+  font-size: 18px;
+  padding-top: 8px;
+  border-top: 2px dashed #d2691e;
+  margin-top: 8px;
+}
+
+.payment-method {
+  font-size: 14px;
+  color: #8b6f47;
+  font-weight: 600;
+}
+
+.order-total {
+  font-size: 24px;
+  font-weight: 700;
+  color: #d2691e;
+  font-family: "Permanent Marker", cursive;
+}
+
+.order-card-footer {
+  padding: 20px 30px;
+  background: #fff9f0;
+  border-top: 3px dashed #d2691e;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.view-invoice-btn,
+.view-details-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border: 3px solid #3d2817;
+  border-radius: 12px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #3d2817;
+  transition: all 0.3s;
+}
+
+.view-invoice-btn {
+  background: #fff;
+  color: #3d2817;
+}
+
+.view-invoice-btn:hover {
+  background: #fff9f0;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #3d2817;
+}
+
+.view-invoice-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px #3d2817;
+}
+
+.view-details-btn {
+  background: #d2691e;
+  color: #fff;
+}
+
+.view-details-btn:hover {
+  background: #e67e22;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #3d2817;
+}
+
+.view-details-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px #3d2817;
+}
+
+/* Icon Styling */
+.view-invoice-btn ion-icon,
+.view-details-btn ion-icon {
+  font-size: 20px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .order-card-body {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .order-summary-info {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .orders-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .header-left {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .orders-title-sketch {
+    font-size: 36px;
+  }
+
+  .orders-icon {
+    font-size: 48px;
+  }
+
+  .order-card-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .order-card-body {
+    padding: 20px;
+  }
+
+  .order-card-footer {
+    padding: 15px 20px;
+    flex-direction: column;
+  }
+
+  .view-invoice-btn,
+  .view-details-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .empty-orders-card {
+    padding: 50px 30px;
+  }
+
+  .empty-orders-card h2 {
+    font-size: 28px;
+  }
+}

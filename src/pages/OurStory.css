@@ -1,0 +1,484 @@
+/* Our Story Page - Matching Home Design */
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Permanent+Marker&family=Comic+Neue:wght@400;700&display=swap");
+
+ion-content {
+  --background: #fff9f0;
+}
+
+/* Hero Section */
+.story-hero {
+  position: relative;
+  background: linear-gradient(135deg, #fff9f0 0%, #ffe4c4 100%);
+  padding: 120px 60px 80px;
+  overflow: hidden;
+  border-bottom: 5px solid #3d2817;
+}
+
+.sketch-bg-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 35px,
+      rgba(61, 40, 23, 0.03) 35px,
+      rgba(61, 40, 23, 0.03) 70px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 35px,
+      rgba(61, 40, 23, 0.03) 35px,
+      rgba(61, 40, 23, 0.03) 70px
+    );
+  pointer-events: none;
+}
+
+.story-hero-content {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: #d2691e;
+  color: #fff;
+  font-family: "Patrick Hand", cursive;
+  font-size: 16px;
+  border: 3px solid #3d2817;
+  border-radius: 50px;
+  transform: rotate(-3deg);
+  margin-bottom: 30px;
+  box-shadow: 4px 4px 0 rgba(61, 40, 23, 0.3);
+}
+
+.story-hero-title {
+  font-family: "Permanent Marker", cursive;
+  font-size: 64px;
+  color: #3d2817;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-shadow: 5px 5px 0 rgba(210, 105, 30, 0.3);
+}
+
+.story-hero-title span {
+  display: block;
+}
+
+.word-1 {
+  transform: rotate(-2deg);
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+.word-2 {
+  transform: rotate(2deg);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.story-hero-subtitle {
+  font-family: "Patrick Hand", cursive;
+  font-size: 24px;
+  color: #8b4513;
+  transform: rotate(-1deg);
+}
+
+/* Story Content */
+.story-content {
+  padding: 80px 60px;
+  background: #fff9f0;
+}
+
+.story-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.story-card {
+  position: relative;
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 30px;
+  padding: 60px;
+  box-shadow: 15px 15px 0 rgba(61, 40, 23, 0.2);
+  transform: rotate(-0.5deg);
+}
+
+/* Card Corners */
+.card-corner {
+  display: none;
+}
+
+.card-sketch-border {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 3px dashed rgba(61, 40, 23, 0.4);
+  border-radius: 30px;
+  pointer-events: none;
+}
+
+/* Story Sections */
+.story-section {
+  margin-bottom: 50px;
+}
+
+.story-heading {
+  font-family: "Permanent Marker", cursive;
+  font-size: 36px;
+  color: #3d2817;
+  margin-bottom: 20px;
+  transform: rotate(-1deg);
+  text-shadow: 3px 3px 0 rgba(210, 105, 30, 0.2);
+}
+
+.story-text {
+  font-family: "Comic Neue", cursive;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #3d2817;
+  margin-bottom: 20px;
+}
+
+/* Story Divider */
+.story-divider {
+  text-align: center;
+  margin: 40px 0;
+  position: relative;
+}
+
+.story-divider::before,
+.story-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    #3d2817 0,
+    #3d2817 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  transform: translateY(-50%);
+}
+
+.story-divider::before {
+  left: 0;
+}
+
+.story-divider::after {
+  right: 0;
+}
+
+.divider-cookie {
+  display: inline-block;
+  font-size: 40px;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Story Features */
+.story-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.feature-item {
+  background: #fff9f0;
+  border: 3px solid #3d2817;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  transition: all 0.3s;
+  transform: rotate(0deg);
+}
+
+.feature-item:nth-child(odd) {
+  transform: rotate(-1deg);
+}
+
+.feature-item:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+.feature-item:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 8px 8px 0 rgba(61, 40, 23, 0.2);
+}
+
+.feature-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.feature-title {
+  font-family: "Permanent Marker", cursive;
+  font-size: 22px;
+  color: #3d2817;
+  margin-bottom: 10px;
+}
+
+.feature-text {
+  font-family: "Comic Neue", cursive;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #8b4513;
+}
+
+/* Card Doodles */
+.card-doodles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.doodle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(210, 105, 30, 0.3);
+  border-radius: 50%;
+}
+
+.doodle.d1 {
+  top: 15%;
+  right: 10%;
+  width: 30px;
+  height: 30px;
+  animation: float 4s ease-in-out infinite;
+}
+
+.doodle.d2 {
+  bottom: 20%;
+  left: 8%;
+  width: 25px;
+  height: 25px;
+  animation: float 5s ease-in-out infinite 1s;
+}
+
+.doodle.d3 {
+  top: 60%;
+  right: 5%;
+  width: 20px;
+  height: 20px;
+  animation: float 6s ease-in-out infinite 2s;
+}
+
+/* CTA Section */
+.story-cta {
+  position: relative;
+  background: linear-gradient(135deg, #d2691e 0%, #ff6347 100%);
+  padding: 80px 60px;
+  text-align: center;
+  border-top: 5px solid #3d2817;
+  overflow: hidden;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-title {
+  font-family: "Permanent Marker", cursive;
+  font-size: 48px;
+  color: #fff;
+  margin-bottom: 15px;
+  text-shadow: 4px 4px 0 rgba(61, 40, 23, 0.4);
+  transform: rotate(-2deg);
+}
+
+.cta-subtitle {
+  font-family: "Patrick Hand", cursive;
+  font-size: 24px;
+  color: #fff9f0;
+  margin-bottom: 30px;
+  transform: rotate(1deg);
+}
+
+.cta-btn {
+  padding: 18px 50px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 20px;
+  color: #3d2817;
+  background: #fff;
+  border: 4px solid #3d2817;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 8px 8px 0 rgba(61, 40, 23, 0.4);
+  transform: rotate(-1deg);
+}
+
+.cta-btn:hover {
+  background: #fff9f0;
+  transform: rotate(-1deg) translate(-4px, -4px);
+  box-shadow: 12px 12px 0 rgba(61, 40, 23, 0.5);
+}
+
+/* Floating Cookies */
+.cookie-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.floating-cookie {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #d2691e 30%, #8b4513 100%);
+  border-radius: 50%;
+  border: 4px solid rgba(61, 40, 23, 0.3);
+  opacity: 0.6;
+}
+
+.floating-cookie::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #3d2817;
+  border-radius: 50%;
+  top: 20%;
+  left: 25%;
+}
+
+.floating-cookie::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #3d2817;
+  border-radius: 50%;
+  bottom: 30%;
+  right: 20%;
+}
+
+.floating-cookie.c1 {
+  top: 10%;
+  left: 10%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-cookie.c2 {
+  top: 20%;
+  right: 15%;
+  animation: float 7s ease-in-out infinite 1s;
+}
+
+.floating-cookie.c3 {
+  bottom: 15%;
+  left: 20%;
+  animation: float 8s ease-in-out infinite 2s;
+}
+
+.floating-cookie.c4 {
+  bottom: 25%;
+  right: 10%;
+  animation: float 9s ease-in-out infinite 3s;
+}
+
+/* Animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .story-hero {
+    padding: 80px 30px 60px;
+  }
+
+  .story-hero-title {
+    font-size: 42px;
+  }
+
+  .story-hero-subtitle {
+    font-size: 18px;
+  }
+
+  .story-content {
+    padding: 60px 30px;
+  }
+
+  .story-card {
+    padding: 40px 30px;
+  }
+
+  .story-heading {
+    font-size: 28px;
+  }
+
+  .story-text {
+    font-size: 16px;
+  }
+
+  .story-features {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .story-cta {
+    padding: 60px 30px;
+  }
+
+  .cta-title {
+    font-size: 36px;
+  }
+
+  .cta-subtitle {
+    font-size: 18px;
+  }
+
+  .floating-cookie {
+    width: 60px;
+    height: 60px;
+  }
+}
