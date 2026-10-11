@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { IonContent, IonHeader, IonPage, IonIcon } from "@ionic/react";
 import {
   mailOutline,
@@ -20,7 +20,15 @@ const Login: React.FC = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const history = useHistory();
-  const { login, loginWithGoogle } = useAuth();
+  const location = useLocation();
+  const { login, loginWithGoogle, authError } = useAuth();
+
+  const getDestination = () => {
+    const requestedPath = new URLSearchParams(location.search).get("returnTo");
+    return requestedPath?.startsWith("/") && !requestedPath.startsWith("//")
+      ? requestedPath
+      : "/";
+  };
 
   // Email validation helper
   const validateEmail = (email: string): boolean => {
@@ -95,7 +103,7 @@ const Login: React.FC = () => {
         // Clear form
         setEmail("");
         setPassword("");
-        history.push("/profile");
+        history.replace(getDestination());
       } else {
         setError(
           "Invalid email or password. Please check your credentials and try again."
@@ -119,7 +127,7 @@ const Login: React.FC = () => {
       const success = await loginWithGoogle();
 
       if (success) {
-        history.push("/profile");
+        history.replace("/");
       } else {
         setError("Google login failed. Please try again or use email login.");
       }
@@ -215,7 +223,9 @@ const Login: React.FC = () => {
                   </a>
                 </div>
 
-                {error && <div className="error-message">{error}</div>}
+                {(authError || error) && (
+                  <div className="error-message">{authError || error}</div>
+                )}
 
                 <button type="submit" className="login-btn" disabled={loading}>
                   {loading ? "Signing In..." : "Sign In"}

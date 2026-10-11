@@ -7,9 +7,7 @@ import {
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { CartProvider } from "./context/CartContext";
-import { AuthProvider } from "./context/AuthContext";
-import { useEffect, useState } from "react";
-import { database } from "./services/database";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
@@ -46,27 +44,76 @@ import "./theme/variables.css";
 
 setupIonicReact();
 
+const SessionLoader: React.FC = () => (
+  <div
+    role="status"
+    aria-label="Restoring your session"
+    style={{ minHeight: "100vh", display: "grid", placeItems: "center" }}
+  >
+    <IonSpinner name="crescent" />
+  </div>
+);
+
+const LandingPage: React.FC = () => {
+  const { isAuthenticated, isAuthReady } = useAuth();
+
+  if (!isAuthReady) {
+    return <SessionLoader />;
+  }
+
+  return isAuthenticated ? <Home /> : <Login />;
+};
+
+const ProtectedRoute: React.FC<{
+  exact?: boolean;
+  path: string;
+  component: React.ComponentType;
+}> = ({ component: Component, ...routeProps }) => {
+  const { isAuthenticated, isAuthReady } = useAuth();
+
+  return (
+    <Route
+      {...routeProps}
+      render={({ location }) => {
+        if (!isAuthReady) return <SessionLoader />;
+        if (isAuthenticated) return <Component />;
+
+        return (
+          <Redirect
+            to={{
+              pathname: "/login",
+              search: `?returnTo=${encodeURIComponent(
+                `${location.pathname}${location.search}`
+              )}`,
+            }}
+          />
+        );
+      }}
+    />
+  );
+};
+
 const App: React.FC = () => {
   return (
     <AuthProvider>
-      <CartProvider>
-        <IonApp>
-          <IonReactRouter>
+      <IonApp>
+        <IonReactRouter>
+          <CartProvider>
             <IonRouterOutlet>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/home" component={Home} />
+              <Route exact path="/" component={LandingPage} />
+              <Route exact path="/home" component={LandingPage} />
               <Route exact path="/products" component={Products} />
               <Route exact path="/product/:id" component={ProductDetails} />
-              <Route exact path="/cart" component={Cart} />
-              <Route exact path="/checkout" component={Checkout} />
-              <Route exact path="/payment" component={Payment} />
+              <ProtectedRoute exact path="/cart" component={Cart} />
+              <ProtectedRoute exact path="/checkout" component={Checkout} />
+              <ProtectedRoute exact path="/payment" component={Payment} />
               <Route
                 exact
                 path="/order-confirmation"
                 component={OrderConfirmation}
               />
-              <Route exact path="/orders" component={Orders} />
-              <Route exact path="/favorites" component={Favorites} />
+              <ProtectedRoute exact path="/orders" component={Orders} />
+              <ProtectedRoute exact path="/favorites" component={Favorites} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile" component={Profile} />
@@ -74,9 +121,9 @@ const App: React.FC = () => {
               <Route exact path="/developers" component={Developers} />
               <Redirect exact from="/tab1" to="/" />
             </IonRouterOutlet>
-          </IonReactRouter>
-        </IonApp>
-      </CartProvider>
+          </CartProvider>
+        </IonReactRouter>
+      </IonApp>
     </AuthProvider>
   );
 };

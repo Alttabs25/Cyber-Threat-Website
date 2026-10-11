@@ -4,6 +4,9 @@
 import { Product } from "../data/products";
 import { database } from "./database";
 
+const CURRENT_USER_KEY = "cookie_app_current_user_v2";
+const LEGACY_CURRENT_USER_KEY = "app_current_user";
+
 // ===================== INTERFACES =====================
 
 export interface User {
@@ -82,7 +85,10 @@ class StorageService {
 
   private async loadCurrentUser() {
     try {
-      const data = localStorage.getItem("app_current_user");
+      // Older builds persisted sessions without validating the user record.
+      // Drop that legacy session once so the new auth gate starts securely.
+      localStorage.removeItem(LEGACY_CURRENT_USER_KEY);
+      const data = localStorage.getItem(CURRENT_USER_KEY);
       if (data) this.currentUser = JSON.parse(data);
     } catch (error) {
       console.error("Error loading current user:", error);
@@ -91,10 +97,7 @@ class StorageService {
 
   private saveCurrentUser() {
     try {
-      localStorage.setItem(
-        "app_current_user",
-        JSON.stringify(this.currentUser)
-      );
+      localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(this.currentUser));
     } catch (error) {
       console.error("Error saving current user:", error);
     }

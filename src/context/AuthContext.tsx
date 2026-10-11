@@ -1,8 +1,12 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import storageService from "../services/storage";
-import { hashPassword, verifyPassword } from "../utils/crypto";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import type { User as SupabaseUser } from "@supabase/supabase-js";
+import {
+  assertSupabaseConfigured,
+  isSupabaseConfigured,
+  supabase,
+} from "../lib/supabase";
 
-interface User {
+export interface User {
   id: string;
   name: string;
   email: string;
@@ -14,260 +18,209 @@ interface User {
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
+  isAuthReady: boolean;
+  authError: string | null;
   login: (email: string, password: string) => Promise<boolean>;
   signup: (name: string, email: string, password: string) => Promise<boolean>;
-  logout: () => void;
+  logout: () => Promise<void>;
   loginWithGoogle: () => Promise<boolean>;
-  updateProfile: (updates: Partial<User>) => void;
-  resetProfile: () => void;
+  updateProfile: (updates: Partial<User>) => Promise<void>;
+  resetProfile: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+const baseUser = (authUser: SupabaseUser): User => ({
+  id: authUser.id,
+  name:
+    authUser.user_metadata?.name || authUser.email?.split("@")[0] || "Customer",
+  email: authUser.email || "",
+  profileImage:
+    authUser.user_metadata?.avatar_url || authUser.user_metadata?.picture,
+});
+
+const loadUserProfile = async (authUser: SupabaseUser): Promise<User> => {
+  const fallback = baseUser(authUser);
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("name, email, phone, address, profile_image")
+    .eq("id", authUser.id)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Unable to load Supabase profile:", error.message);
+    return fallback;
+  }
+
+  return data
+    ? {
+        id: authUser.id,
+        name: data.name || fallback.name,
+        email: data.email || fallback.email,
+        phone: data.phone || undefined,
+        address: data.address || undefined,
+        profileImage: data.profile_image || fallback.profileImage,
+      }
+    : fallback;
+};
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthReady, setIsAuthReady] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
 
-  // Load user from storage service on mount
   useEffect(() => {
-    const currentUser = storageService.getCurrentUser();
-    if (currentUser) {
-      setUser({
-        id: currentUser.id,
-        name: currentUser.name,
-        email: currentUser.email,
-        profileImage: currentUser.profileImage,
-        phone: currentUser.phone,
-        address: currentUser.address,
-      });
-      setIsAuthenticated(true);
+    let active = true;
+    let sessionVersion = 0;
+
+    const applyAuthUser = async (authUser: SupabaseUser | null) => {
+      const version = ++sessionVersion;
+      if (!authUser) {
+        if (active) setUser(null);
+        return;
+      }
+
+      const profile = await loadUserProfile(authUser);
+      if (active && version === sessionVersion) setUser(profile);
+    };
+
+    if (!isSupabaseConfigured) {
+      setAuthError(
+        "Supabase is not configured. Add your project URL and publishable/anon key to .env."
+      );
+      setUser(null);
+      setIsAuthReady(true);
+      return;
     }
+
+    const initializeAuth = async () => {
+      const { data, error } = await supabase.auth.getSession();
+      if (error) setAuthError(error.message);
+      await applyAuthUser(data.session?.user ?? null);
+      if (active) setIsAuthReady(true);
+    };
+
+    void initializeAuth();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      // Defer database work until the auth callback has returned.
+      window.setTimeout(() => void applyAuthUser(session?.user ?? null), 0);
+    });
+
+    return () => {
+      active = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (email: string, password: string) => {
     try {
-      // Validate inputs
-      if (!email || !password) {
-        console.error("Login failed: Email and password are required");
-        return false;
-      }
-
-      // Normalize email
-      const normalizedEmail = email.trim().toLowerCase();
-
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      // Get user by email
-      const existingUser = await storageService.getUserByEmail(normalizedEmail);
-
-      if (!existingUser) {
-        console.log("Login failed: User not found");
-        return false;
-      }
-
-      // Verify password (supports both hashed and plain text for backward compatibility)
-      let isPasswordValid = false;
-
-      // Check if password is hashed (64 chars = SHA-256 hex)
-      if (existingUser.password.length === 64) {
-        isPasswordValid = await verifyPassword(password, existingUser.password);
-      } else {
-        // Plain text comparison (for existing users)
-        isPasswordValid = password === existingUser.password;
-
-        // Update to hashed password
-        if (isPasswordValid) {
-          const hashedPassword = await hashPassword(password);
-          await storageService.updateUser(existingUser.id, {
-            password: hashedPassword,
-          });
-        }
-      }
-
-      if (!isPasswordValid) {
-        console.log("Login failed: Invalid password");
-        return false;
-      }
-
-      // Login successful
-      const userData: User = {
-        id: existingUser.id,
-        name: existingUser.name,
-        email: existingUser.email,
-        profileImage: existingUser.profileImage,
-        phone: existingUser.phone,
-        address: existingUser.address,
-      };
-
-      setUser(userData);
-      setIsAuthenticated(true);
-      storageService.setCurrentUser(existingUser);
-
-      console.log("Login successful");
-      return true;
-    } catch (error) {
-      console.error("Login error:", error);
-      return false;
-    }
-  };
-
-  const signup = async (
-    name: string,
-    email: string,
-    password: string
-  ): Promise<boolean> => {
-    try {
-      // Validate inputs
-      if (!name || !email || !password) {
-        console.error("Signup failed: All fields are required");
-        return false;
-      }
-
-      if (name.trim().length < 2) {
-        console.error("Signup failed: Name must be at least 2 characters");
-        return false;
-      }
-
-      if (password.length < 6) {
-        console.error("Signup failed: Password must be at least 6 characters");
-        return false;
-      }
-
-      // Normalize email
-      const normalizedEmail = email.trim().toLowerCase();
-      const trimmedName = name.trim();
-
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      // Check for existing user with case-insensitive email
-      console.log(
-        "[SIGNUP] Checking for existing user with email:",
-        normalizedEmail
-      );
-      const existingUser = await storageService.getUserByEmail(normalizedEmail);
-      console.log("[SIGNUP] getUserByEmail result:", existingUser);
-
-      if (existingUser) {
-        console.log("[SIGNUP] User already exists, signup failed");
-        return false;
-      }
-
-      // Hash password before storing
-      const hashedPassword = await hashPassword(password);
-      console.log("[SIGNUP] Password hashed successfully");
-
-      // Create new user with normalized data and hashed password
-      const newUser = await storageService.createUser({
-        name: trimmedName,
-        email: normalizedEmail,
-        password: hashedPassword,
+      assertSupabaseConfigured();
+      setAuthError(null);
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email.trim().toLowerCase(),
+        password,
       });
-
-      // Auto-login after signup
-      const userData: User = {
-        id: newUser.id,
-        name: newUser.name,
-        email: newUser.email,
-        profileImage: newUser.profileImage,
-        phone: newUser.phone,
-        address: newUser.address,
-      };
-      setUser(userData);
-      setIsAuthenticated(true);
-      storageService.setCurrentUser(newUser);
-
-      console.log("[SIGNUP] User created and logged in successfully");
+      if (error || !data.user) throw error || new Error("Login failed");
+      setUser(await loadUserProfile(data.user));
       return true;
     } catch (error) {
-      console.error("Signup error:", error);
+      setAuthError(error instanceof Error ? error.message : "Login failed");
       return false;
     }
   };
 
-  const loginWithGoogle = async (): Promise<boolean> => {
+  const signup = async (name: string, email: string, password: string) => {
     try {
-      // Simulate Google OAuth
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      assertSupabaseConfigured();
+      setAuthError(null);
+      const { data, error } = await supabase.auth.signUp({
+        email: email.trim().toLowerCase(),
+        password,
+        options: { data: { name: name.trim() } },
+      });
+      if (error || !data.user) throw error || new Error("Signup failed");
 
-      // Generate a unique Google email for testing
-      const googleEmail = `google.user.${Date.now()}@gmail.com`;
-
-      // Check if Google user already exists
-      let existingUser = await storageService.getUserByEmail(googleEmail);
-
-      if (!existingUser) {
-        // Create new Google user with default values
-        existingUser = await storageService.createUser({
-          name: "Google User",
-          email: googleEmail,
-          password: `google-oauth-${Date.now()}`, // Secure token, not user-facing
-        });
-      }
-
-      const googleUser: User = {
-        id: existingUser.id,
-        name: existingUser.name,
-        email: existingUser.email,
-        profileImage: existingUser.profileImage,
-        phone: existingUser.phone,
-        address: existingUser.address,
-      };
-
-      setUser(googleUser);
-      setIsAuthenticated(true);
-      storageService.setCurrentUser(existingUser);
-
-      console.log("[GOOGLE LOGIN] User logged in successfully");
+      if (data.session) setUser(await loadUserProfile(data.user));
       return true;
     } catch (error) {
-      console.error("Google login error:", error);
+      setAuthError(error instanceof Error ? error.message : "Signup failed");
       return false;
     }
   };
 
-  const logout = () => {
+  const loginWithGoogle = async () => {
+    try {
+      assertSupabaseConfigured();
+      setAuthError(null);
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: { redirectTo: `${window.location.origin}/` },
+      });
+      if (error) throw error;
+      return true;
+    } catch (error) {
+      setAuthError(
+        error instanceof Error ? error.message : "Google login failed"
+      );
+      return false;
+    }
+  };
+
+  const logout = async () => {
+    setAuthError(null);
+    const { error } = await supabase.auth.signOut();
+    if (error) setAuthError(error.message);
     setUser(null);
-    setIsAuthenticated(false);
-    storageService.logout();
   };
 
   const updateProfile = async (updates: Partial<User>) => {
-    if (user) {
-      const success = await storageService.updateUser(user.id, updates);
+    if (!user) return;
 
-      if (success) {
-        // Get the updated user from storage service
-        const updatedStorageUser = await storageService.getUserById(user.id);
-        if (updatedStorageUser) {
-          const updatedUser: User = {
-            id: updatedStorageUser.id,
-            name: updatedStorageUser.name,
-            email: updatedStorageUser.email,
-            profileImage: updatedStorageUser.profileImage,
-            phone: updatedStorageUser.phone,
-            address: updatedStorageUser.address,
-          };
-          setUser(updatedUser);
-        }
-      }
+    assertSupabaseConfigured();
+    setAuthError(null);
+
+    const nextEmail = updates.email?.trim().toLowerCase() || user.email;
+    if (nextEmail !== user.email) {
+      const { error } = await supabase.auth.updateUser({ email: nextEmail });
+      if (error) throw error;
     }
+
+    const nextUser = { ...user, ...updates, email: nextEmail };
+    const { error } = await supabase.from("profiles").upsert(
+      {
+        id: user.id,
+        name: nextUser.name,
+        email: nextUser.email,
+        phone: nextUser.phone || null,
+        address: nextUser.address || null,
+        profile_image: nextUser.profileImage || null,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "id" }
+    );
+    if (error) {
+      setAuthError(error.message);
+      throw error;
+    }
+    setUser(nextUser);
   };
 
   const resetProfile = async () => {
-    logout();
-    // Clear all app data from storage service
-    await storageService.clearAllData();
+    await logout();
   };
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        isAuthenticated,
+        isAuthenticated: Boolean(user),
+        isAuthReady,
+        authError,
         login,
         signup,
         logout,
@@ -283,8 +236,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
+  if (!context) throw new Error("useAuth must be used within an AuthProvider");
   return context;
 };

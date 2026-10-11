@@ -32,6 +32,7 @@ const Profile: React.FC = () => {
     logout,
     loginWithGoogle,
     updateProfile,
+    authError,
   } = useAuth();
   const { getCartCount, wishlist } = useCart();
   const [showLoginForm, setShowLoginForm] = useState(true);
@@ -186,7 +187,7 @@ const Profile: React.FC = () => {
     setError("");
   };
 
-  const handleSaveProfile = () => {
+  const handleSaveProfile = async () => {
     if (!editData.name.trim()) {
       setError("Name is required");
       return;
@@ -200,9 +201,17 @@ const Profile: React.FC = () => {
       return;
     }
 
-    updateProfile(editData);
-    setIsEditing(false);
-    setError("");
+    try {
+      await updateProfile(editData);
+      setIsEditing(false);
+      setError("");
+    } catch (saveError) {
+      setError(
+        saveError instanceof Error
+          ? saveError.message
+          : "Unable to update profile"
+      );
+    }
   };
 
   const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -340,7 +349,9 @@ const Profile: React.FC = () => {
                             placeholder="123 Main St, City, State"
                           />
                         </div>
-                        {error && <p className="error-message">{error}</p>}
+                        {(authError || error) && (
+                          <p className="error-message">{authError || error}</p>
+                        )}
                       </div>
                       <button
                         className="save-profile-btn"
@@ -589,8 +600,8 @@ const Profile: React.FC = () => {
                       </a>
                     </div>
 
-                    {error && showLoginForm && (
-                      <div className="error-message">{error}</div>
+                    {(authError || error) && showLoginForm && (
+                      <div className="error-message">{authError || error}</div>
                     )}
 
                     <button
@@ -731,8 +742,8 @@ const Profile: React.FC = () => {
                       </label>
                     </div>
 
-                    {error && !showLoginForm && (
-                      <div className="error-message">{error}</div>
+                    {(authError || error) && !showLoginForm && (
+                      <div className="error-message">{authError || error}</div>
                     )}
 
                     <button

@@ -10,7 +10,7 @@ A modern, responsive e-commerce web application for **Chip Happens** (Cookie Hav
 - **Handcrafted Sketch & Bakery Aesthetic:** Warm chocolate and caramel color palette (`#3d2817`, `#d2691e`, `#8b4513`, `#fff9f0`), playful dashed doodle borders, corner tabs, and expressive hand-drawn typography (`Patrick Hand`, `Permanent Marker`, `Comic Neue`).
 - **Interactive Animations:** Lively floating cookies with rotation effects, top marquee announcement ticker, and responsive micro-interactions.
 - **Full E-Commerce Workflow:** 24 handcrafted cookie catalog, dynamic box size pricing (Small, Regular, Large), cart management with promo codes (`COOKIE20`), checkout with address validation, order receipts with print support, and order history tracking.
-- **Dual-Mode Data Resilience:** Seamlessly connects to **Supabase** when credentials are configured, with automatic fallback to local persistence so features, testing, and development work instantly without interruption.
+- **Authenticated Cloud Data:** Uses **Supabase Auth**, PostgreSQL, and Row Level Security for customer profiles, carts, and favorites. Guest cart and wishlist writes are intentionally blocked.
 
 ---
 
@@ -71,7 +71,7 @@ VITE_SUPABASE_ANON_KEY=your-anon-public-key
 VITE_STRIPE_SERVER_URL=https://server-2wvvle27c-qpgdbraganza-4961s-projects.vercel.app/
 ```
 
-> **Note:** The application includes a fallback mode. If Supabase credentials are left as placeholders, the application automatically uses local state persistence, allowing you to test every page, flow, cart, and order immediately.
+> **Required:** Replace both Supabase placeholders before running the app. There is no guest/local fallback for authentication, carts, or favorites.
 
 ---
 
@@ -87,8 +87,8 @@ supabase/migrations/20240101000000_initial_schema.sql
 1. Log in to your [Supabase Dashboard](https://app.supabase.com) and create or open your project.
 2. In the left navigation, click on **SQL Editor**.
 3. Click **New Query**.
-4. Copy and paste the entire contents of `supabase/migrations/20240101000000_initial_schema.sql`.
-5. Click **Run** (or press `Ctrl+Enter`).
+4. Copy and paste the entire contents of `supabase/migrations/20240101000000_initial_schema.sql` and run it.
+5. Then run `supabase/migrations/20261011000000_require_authentication.sql` to enforce authenticated-only customer data access.
 
 ### What this migration sets up:
 - **`public.profiles`**: Synchronized with `auth.users` via database trigger `handle_new_user()`.

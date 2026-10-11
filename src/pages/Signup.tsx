@@ -31,7 +31,7 @@ const Signup: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const history = useHistory();
-  const { signup, loginWithGoogle } = useAuth();
+  const { signup, loginWithGoogle, authError } = useAuth();
 
   // Email validation helper
   const validateEmail = (email: string): boolean => {
@@ -205,8 +205,8 @@ const Signup: React.FC = () => {
           confirmPassword: "",
         });
         setAgreedToTerms(false);
-        console.log("[SIGNUP PAGE] Signup successful, redirecting to profile");
-        history.push("/profile");
+        console.log("[SIGNUP PAGE] Signup successful, redirecting to home");
+        history.replace("/");
       } else {
         console.log("[SIGNUP PAGE] Signup failed - email already exists");
         setError(
@@ -230,7 +230,7 @@ const Signup: React.FC = () => {
       const success = await loginWithGoogle();
 
       if (success) {
-        history.push("/profile");
+        history.replace("/");
       } else {
         setError(
           "Google sign up failed. Please try again or use email signup."
@@ -396,7 +396,9 @@ const Signup: React.FC = () => {
                   </label>
                 </div>
 
-                {error && <div className="error-message">{error}</div>}
+                {(authError || error) && (
+                  <div className="error-message">{authError || error}</div>
+                )}
 
                 <button type="submit" className="signup-btn" disabled={loading}>
                   {loading ? "Creating Account..." : "Create Account"}

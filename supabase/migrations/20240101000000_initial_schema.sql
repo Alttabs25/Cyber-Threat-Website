@@ -9,8 +9,19 @@
 create extension if not exists "uuid-ossp";
 
 -- 2. Create custom types
-create type order_status as enum ('pending', 'processing', 'shipped', 'delivered', 'cancelled');
-create type payment_status as enum ('pending', 'paid', 'failed', 'refunded');
+do $$
+begin
+  create type order_status as enum ('pending', 'processing', 'shipped', 'delivered', 'cancelled');
+exception
+  when duplicate_object then null;
+end $$;
+
+do $$
+begin
+  create type payment_status as enum ('pending', 'paid', 'failed', 'refunded');
+exception
+  when duplicate_object then null;
+end $$;
 
 -- ==============================================================================
 -- TABLE: profiles (Extends Supabase auth.users)
@@ -34,17 +45,25 @@ create index if not exists idx_profiles_email on public.profiles(email);
 alter table public.profiles enable row level security;
 
 -- Policies for profiles
-create policy "Public profiles are viewable by everyone" 
-  on public.profiles for select 
-  using (true);
+drop policy if exists "Public profiles are viewable by everyone" on public.profiles;
+drop policy if exists "Users can view their own profile" on public.profiles;
+create policy "Users can view their own profile"
+  on public.profiles for select
+  to authenticated
+  using ((select auth.uid()) = id);
 
+drop policy if exists "Users can update their own profile" on public.profiles;
 create policy "Users can update their own profile" 
-  on public.profiles for update 
-  using (auth.uid() = id);
+  on public.profiles for update
+  to authenticated
+  using ((select auth.uid()) = id)
+  with check ((select auth.uid()) = id);
 
+drop policy if exists "Users can insert their own profile" on public.profiles;
 create policy "Users can insert their own profile" 
-  on public.profiles for insert 
-  with check (auth.uid() = id);
+  on public.profiles for insert
+  to authenticated
+  with check ((select auth.uid()) = id);
 
 -- Trigger to auto-create profile on Supabase auth signup
 create or replace function public.handle_new_user()
@@ -91,10 +110,12 @@ create index if not exists idx_products_featured on public.products(is_featured)
 alter table public.products enable row level security;
 
 -- Policies for products
+drop policy if exists "Anyone can read products" on public.products;
 create policy "Anyone can read products" 
   on public.products for select 
   using (true);
 
+drop policy if exists "Admins can manage products" on public.products;
 create policy "Admins can manage products" 
   on public.products for all 
   using (
@@ -122,21 +143,30 @@ create index if not exists idx_cart_user_id on public.cart_items(user_id);
 -- Enable RLS
 alter table public.cart_items enable row level security;
 
+drop policy if exists "Users can view their own cart" on public.cart_items;
 create policy "Users can view their own cart" 
-  on public.cart_items for select 
-  using (auth.uid() = user_id);
+  on public.cart_items for select
+  to authenticated
+  using ((select auth.uid()) = user_id);
 
+drop policy if exists "Users can insert into their own cart" on public.cart_items;
 create policy "Users can insert into their own cart" 
-  on public.cart_items for insert 
-  with check (auth.uid() = user_id);
+  on public.cart_items for insert
+  to authenticated
+  with check ((select auth.uid()) = user_id);
 
+drop policy if exists "Users can update their own cart items" on public.cart_items;
 create policy "Users can update their own cart items" 
-  on public.cart_items for update 
-  using (auth.uid() = user_id);
+  on public.cart_items for update
+  to authenticated
+  using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
 
+drop policy if exists "Users can delete their own cart items" on public.cart_items;
 create policy "Users can delete their own cart items" 
-  on public.cart_items for delete 
-  using (auth.uid() = user_id);
+  on public.cart_items for delete
+  to authenticated
+  using ((select auth.uid()) = user_id);
 
 -- ==============================================================================
 -- TABLE: favorites (Wishlist)
@@ -154,17 +184,23 @@ create index if not exists idx_favorites_user_id on public.favorites(user_id);
 -- Enable RLS
 alter table public.favorites enable row level security;
 
+drop policy if exists "Users can view their own favorites" on public.favorites;
 create policy "Users can view their own favorites" 
-  on public.favorites for select 
-  using (auth.uid() = user_id);
+  on public.favorites for select
+  to authenticated
+  using ((select auth.uid()) = user_id);
 
+drop policy if exists "Users can add to their favorites" on public.favorites;
 create policy "Users can add to their favorites" 
-  on public.favorites for insert 
-  with check (auth.uid() = user_id);
+  on public.favorites for insert
+  to authenticated
+  with check ((select auth.uid()) = user_id);
 
+drop policy if exists "Users can remove from their favorites" on public.favorites;
 create policy "Users can remove from their favorites" 
-  on public.favorites for delete 
-  using (auth.uid() = user_id);
+  on public.favorites for delete
+  to authenticated
+  using ((select auth.uid()) = user_id);
 
 -- ==============================================================================
 -- TABLE: orders
@@ -191,17 +227,25 @@ create index if not exists idx_orders_status on public.orders(status);
 -- Enable RLS
 alter table public.orders enable row level security;
 
+drop policy if exists "Users can view their own orders" on public.orders;
 create policy "Users can view their own orders" 
-  on public.orders for select 
-  using (auth.uid() = user_id or auth.uid() is null);
+  on public.orders for select
+  to authenticated
+  using ((select auth.uid()) = user_id);
 
-create policy "Anyone can insert orders (guest or member)" 
-  on public.orders for insert 
-  with check (true);
+drop policy if exists "Anyone can insert orders (guest or member)" on public.orders;
+drop policy if exists "Users can create their own orders" on public.orders;
+create policy "Users can create their own orders"
+  on public.orders for insert
+  to authenticated
+  with check ((select auth.uid()) = user_id);
 
+drop policy if exists "Users or Admins can update their orders" on public.orders;
 create policy "Users or Admins can update their orders" 
-  on public.orders for update 
-  using (auth.uid() = user_id);
+  on public.orders for update
+  to authenticated
+  using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
 
 -- ==============================================================================
 -- TABLE: order_items
@@ -223,19 +267,30 @@ create index if not exists idx_order_items_order_id on public.order_items(order_
 -- Enable RLS
 alter table public.order_items enable row level security;
 
+drop policy if exists "Order items viewable with order access" on public.order_items;
 create policy "Order items viewable with order access" 
-  on public.order_items for select 
+  on public.order_items for select
+  to authenticated
   using (
     exists (
       select 1 from public.orders 
       where orders.id = order_items.order_id 
-      and (orders.user_id = auth.uid() or orders.user_id is null)
+      and orders.user_id = (select auth.uid())
     )
   );
 
-create policy "Anyone can insert order items" 
-  on public.order_items for insert 
-  with check (true);
+drop policy if exists "Anyone can insert order items" on public.order_items;
+drop policy if exists "Users can insert their own order items" on public.order_items;
+create policy "Users can insert their own order items"
+  on public.order_items for insert
+  to authenticated
+  with check (
+    exists (
+      select 1 from public.orders
+      where orders.id = order_items.order_id
+        and orders.user_id = (select auth.uid())
+    )
+  );
 
 -- ==============================================================================
 -- SEED DATA: 24 HANDCRAFTED COOKIES
