@@ -79,7 +79,7 @@ const Signup: React.FC = () => {
 
   // Sanitize input to prevent XSS
   const sanitizeInput = (input: string): string => {
-    return input.trim().replace(/[<>]/g, "");
+    return input.replace(/[<>]/g, "");
   };
 
   // Handle field change with validation
@@ -93,7 +93,7 @@ const Signup: React.FC = () => {
 
     // Normalize email to lowercase
     if (field === "email") {
-      sanitizedValue = sanitizedValue.toLowerCase();
+      sanitizedValue = sanitizedValue.trim().toLowerCase();
     }
 
     setFormData({ ...formData, [field]: sanitizedValue });

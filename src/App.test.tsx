@@ -33,3 +33,14 @@ test('does not let a signed-out user add an item to the cart', async () => {
   expect(await screen.findByText('Welcome Back!')).toBeInTheDocument();
   expect(window.location.pathname).toBe('/login');
 });
+
+test('allows spaces in the signup full-name field', async () => {
+  const user = userEvent.setup();
+  window.history.replaceState({}, '', '/signup');
+  render(<App />);
+
+  const nameInput = await screen.findByPlaceholderText('John Doe');
+  await user.type(nameInput, 'John Doe');
+
+  expect(nameInput).toHaveValue('John Doe');
+});
