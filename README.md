@@ -188,5 +188,4 @@ chip-happens/
 
 ## 📄 License
 This project was developed for the Chip Happens artisan cookie bakery. All rights reserved.
-#   C y b e r - T h r e a t - W e b s i t e  
- 
+#
